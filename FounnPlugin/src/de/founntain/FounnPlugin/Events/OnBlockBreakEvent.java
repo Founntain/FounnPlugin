@@ -3,7 +3,6 @@ package de.founntain.FounnPlugin.Events;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,9 +22,8 @@ public class OnBlockBreakEvent implements Listener{
 			}else {
 				Bukkit.broadcastMessage(ChatColor.GREEN + player.getDisplayName() + " hat Smaragde gefunden!");
 			}
-		}/* else if(block.getType().toString().toLowerCase().contains("log")) {
-			ExperienceOrb xp = block.getWorld().spawn(block.getLocation(), ExperienceOrb.class);
-			xp.setExperience(1);			
-		}*/
+		} else if(block.getType().toString().toLowerCase().contains("log")) {
+			player.setExp((float)(player.getExp() + 0.01));
+		}
 	}
 }
