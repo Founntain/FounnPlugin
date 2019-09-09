@@ -1,0 +1,14 @@
+name: FounnPlugin
+main: de.founntain.FounnPlugin.FounnPlugin
+version: 1.0
+api-version: 1.13
+commands:
+   startKit:
+      description: Gives you some start tools
+      usage: /startKit
+   coords:
+      description: Tells everyone your coords
+      usage: /coords
+   back:
+      description: Tps you on your death position
+      usage: /back
