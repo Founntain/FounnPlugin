@@ -31,7 +31,7 @@ public class CommandCoords implements CommandExecutor{
 					player.sendMessage(ChatColor.LIGHT_PURPLE + "Deine Netherportal Koordinaten: " + ChatColor.YELLOW + (int)(x/8) + ", " + (int)y + ", " + (int)(z/8));
 				}
 			}else {
-				player.chat(ChatColor.YELLOW + "Meine Koordinaten: " + x + ", " + y + ", " + z);
+				player.chat(ChatColor.YELLOW + "Meine Koordinaten: " + (int)x + ", " + (int)y + ", " + (int)z);
 			}
 			
 			return true;

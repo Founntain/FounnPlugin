@@ -12,3 +12,9 @@ commands:
    back:
       description: Tps you on your death position
       usage: /back
+   sendItem:
+      description: Sends items to a given player
+      usage: /back
+   menu:
+      description: Opens a GUI for Admins
+      usage: /menu

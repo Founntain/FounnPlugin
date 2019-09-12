@@ -17,7 +17,6 @@ public class OnPlayerJoinEvent implements Listener{
 		Player player = e.getPlayer();
 		
 		Bukkit.broadcastMessage("[" + ChatColor.GREEN + "+" + ChatColor.WHITE +"] "+ player.getDisplayName());
-
 	}
 	
 }
