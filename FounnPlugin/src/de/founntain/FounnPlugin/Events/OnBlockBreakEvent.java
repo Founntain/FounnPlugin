@@ -23,7 +23,7 @@ public class OnBlockBreakEvent implements Listener{
 				Bukkit.broadcastMessage(ChatColor.GREEN + player.getDisplayName() + " hat Smaragde gefunden!");
 			}
 		} else if(block.getType().toString().toLowerCase().contains("log")) {
-			player.setExp((float)(player.getExp() + 0.01));
+			player.setExp((float)(player.getExp() + 0.1));
 		}
 	}
 }

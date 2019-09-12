@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 import de.founntain.FounnPlugin.Guis.MenuGui;
 
-public class CommandMenu implements CommandExecutor{
+public class MenuCommand implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player) {

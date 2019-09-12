@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import de.founntain.FounnPlugin.DeathCoord;
 
-public class CommandBack implements CommandExecutor{
+public class BackCommand implements CommandExecutor{
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

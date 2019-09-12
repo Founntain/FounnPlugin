@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import de.founntain.FounnPlugin.Utilities;
 import de.founntain.FounnPlugin.Guis.SendItemGui;
 
-public class CommandSendItem implements CommandExecutor{
+public class SendItemCommand implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		

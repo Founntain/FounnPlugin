@@ -47,6 +47,8 @@ public class OnInventoryCloseEvent implements Listener{
 				
 				receiver.getInventory().addItem(item);
 			}	
+			player.sendMessage(Utilities.getCustomPrefix(ChatColor.YELLOW, "I") + ChatColor.GREEN + receiver.getDisplayName() + " hat erfolgreich deine Items erhalten!");
+			receiver.sendMessage(Utilities.getCustomPrefix(ChatColor.YELLOW, "I") + ChatColor.GREEN + player.getDisplayName() + " hat dir Items geschickt!");
 		}
 	}
 }

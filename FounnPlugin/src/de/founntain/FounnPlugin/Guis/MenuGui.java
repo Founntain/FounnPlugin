@@ -30,9 +30,17 @@ public class MenuGui {
 				ChatColor.GRAY + "anderem " + ChatColor.YELLOW + "Spieler" + ChatColor.GRAY + "!"
 		});
 		
+		ItemStack trash = Utilities.createMenuItem(Material.LAVA_BUCKET, ChatColor.RED + "Müllverbrennungsanlage", new String[] {
+			ChatColor.GRAY + "Werf dort alle Items rein,",
+			ChatColor.GRAY + "die du nicht mehr brauchst, ",
+			ChatColor.GRAY + "bitte bedenke, dass deine Items " + ChatColor.BOLD + ChatColor.UNDERLINE + "nicht",
+			ChatColor.RESET.toString() + ChatColor.GRAY + "wiederhergestellt werden können"
+		});
+		
 		ItemStack[] menuItems = {
 				adminMenu,
-				tpToPlayer
+				tpToPlayer,
+				trash
 		};
 		
 		this.Gui.setContents(menuItems);

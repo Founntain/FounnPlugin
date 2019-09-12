@@ -49,7 +49,7 @@ public class Utilities {
 		return ChatColor.WHITE + "[" + ChatColor.RED + "E" + ChatColor.WHITE +"] ";
 	}
 	
-	public String getCustomPrefix(ChatColor letterColor, String letter) {
+	public static String getCustomPrefix(ChatColor letterColor, String letter) {
 		return ChatColor.WHITE + "[" + letterColor + letter.toUpperCase() + ChatColor.WHITE +"] ";
 	}
 	

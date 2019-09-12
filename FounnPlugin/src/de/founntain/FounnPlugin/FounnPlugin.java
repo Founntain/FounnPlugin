@@ -9,11 +9,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import de.founntain.FounnPlugin.Commands.CommandCoords;
-import de.founntain.FounnPlugin.Commands.CommandSendItem;
-import de.founntain.FounnPlugin.Commands.CommandMenu;
-import de.founntain.FounnPlugin.Commands.CommandBack;
-import de.founntain.FounnPlugin.Commands.CommandStartKit;
+import de.founntain.FounnPlugin.Commands.CoordCommand;
+import de.founntain.FounnPlugin.Commands.SendItemCommand;
+import de.founntain.FounnPlugin.Commands.MenuCommand;
+import de.founntain.FounnPlugin.Commands.BackCommand;
+import de.founntain.FounnPlugin.Commands.StartKitCommand;
 
 import de.founntain.FounnPlugin.Events.OnAsyncPlayerChatEvent;
 import de.founntain.FounnPlugin.Events.OnBlockBreakEvent;
@@ -24,6 +24,8 @@ import de.founntain.FounnPlugin.Events.OnPlayerChangedWorldEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerDeathEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerJoinEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerQuitEvent;
+import de.founntain.FounnPlugin.Recipes.ConcreteRecipe;
+import de.founntain.FounnPlugin.Recipes.WhiteDyeRecipe;
 
 public class FounnPlugin extends JavaPlugin{
 	
@@ -57,13 +59,21 @@ public class FounnPlugin extends JavaPlugin{
 		//Registering Commands
 		this.sendConsoleMessage(ChatColor.YELLOW + "registering commands");
 		
-		this.registerCommand("startKit", new CommandStartKit());
-		this.registerCommand("coords", new CommandCoords());
-		this.registerCommand("back", new CommandBack());
-		this.registerCommand("sendItem", new CommandSendItem());
-		this.registerCommand("menu", new CommandMenu());
+		this.registerCommand("startKit", new StartKitCommand());
+		this.registerCommand("coords", new CoordCommand());
+		this.registerCommand("back", new BackCommand());
+		this.registerCommand("sendItem", new SendItemCommand());
+		this.registerCommand("menu", new MenuCommand());
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering commands");
+		
+		//Registering Recipes
+		this.sendConsoleMessage(ChatColor.YELLOW + "registering recipes");
+		
+		new WhiteDyeRecipe(this);
+		new ConcreteRecipe(this);
+		
+		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
 	}
 	
 	@Override

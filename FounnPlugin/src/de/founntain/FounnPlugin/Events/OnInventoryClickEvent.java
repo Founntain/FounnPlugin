@@ -45,6 +45,9 @@ public class OnInventoryClickEvent implements Listener{
 					teleportGui = new TeleportGui(player, true);
 					teleportGui.openTeleportGui();
 					break;
+				case LAVA_BUCKET:
+					player.openInventory(Bukkit.createInventory(player, 54, ChatColor.RED + "Müllverbrennungsanlage"));
+					break;
 				default:
 					break;
 			}

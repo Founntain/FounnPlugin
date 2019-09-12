@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-public class CommandStartKit implements CommandExecutor{
+public class StartKitCommand implements CommandExecutor{
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
