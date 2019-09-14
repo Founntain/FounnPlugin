@@ -37,10 +37,18 @@ public class MenuGui {
 			ChatColor.RESET.toString() + ChatColor.GRAY + "wiederhergestellt werden können"
 		});
 		
+		ItemStack filler = Utilities.createMenuItem(Material.GRAY_STAINED_GLASS_PANE, " ");
+		
 		ItemStack[] menuItems = {
 				adminMenu,
 				tpToPlayer,
-				trash
+				trash,
+				filler,
+				filler,
+				filler,
+				filler,
+				filler,
+				filler
 		};
 		
 		this.Gui.setContents(menuItems);

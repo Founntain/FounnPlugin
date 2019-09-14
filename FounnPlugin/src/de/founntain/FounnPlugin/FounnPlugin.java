@@ -8,16 +8,18 @@ import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import de.founntain.FounnPlugin.Commands.CoordCommand;
 import de.founntain.FounnPlugin.Commands.SendItemCommand;
+import de.founntain.FounnPlugin.Commands.SpawnCustomMobCommand;
 import de.founntain.FounnPlugin.Commands.MenuCommand;
 import de.founntain.FounnPlugin.Commands.BackCommand;
 import de.founntain.FounnPlugin.Commands.StartKitCommand;
 
 import de.founntain.FounnPlugin.Events.OnAsyncPlayerChatEvent;
 import de.founntain.FounnPlugin.Events.OnBlockBreakEvent;
+import de.founntain.FounnPlugin.Events.OnEnitityDamageByEnityEvent;
 import de.founntain.FounnPlugin.Events.OnEntityDamageEvent;
+import de.founntain.FounnPlugin.Events.OnEntityDeathEvent;
 import de.founntain.FounnPlugin.Events.OnInventoryClickEvent;
 import de.founntain.FounnPlugin.Events.OnInventoryCloseEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerChangedWorldEvent;
@@ -47,9 +49,11 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerEvent(new OnPlayerDeathEvent());
 		this.registerEvent(new OnPlayerJoinEvent());
 		this.registerEvent(new OnPlayerQuitEvent());
-		this.registerEvent(new OnEntityDamageEvent());
-		this.registerEvent(new OnBlockBreakEvent());
 		this.registerEvent(new OnPlayerChangedWorldEvent());
+		this.registerEvent(new OnEntityDamageEvent());
+		this.registerEvent(new OnEnitityDamageByEnityEvent());
+		this.registerEvent(new OnEntityDeathEvent(this));
+		this.registerEvent(new OnBlockBreakEvent());
 		this.registerEvent(new OnAsyncPlayerChatEvent());
 		this.registerEvent(new OnInventoryClickEvent());
 		this.registerEvent(new OnInventoryCloseEvent());
@@ -64,6 +68,7 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerCommand("back", new BackCommand());
 		this.registerCommand("sendItem", new SendItemCommand());
 		this.registerCommand("menu", new MenuCommand());
+		this.registerCommand("spawnCustomMob", new SpawnCustomMobCommand(this));
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering commands");
 		

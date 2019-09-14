@@ -1,6 +1,7 @@
 package de.founntain.FounnPlugin.Events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -67,6 +68,11 @@ public class OnInventoryClickEvent implements Listener{
 					teleportGui = new TeleportGui(player, false);
 					teleportGui.openTeleportGui();
 					break;
+				case CRAFTING_TABLE:
+					player.openWorkbench(null, true);
+					break;
+				case GRAY_STAINED_GLASS_PANE:
+					break;
 				default:
 					MenuGui menuGui = new MenuGui(player);
 					menuGui.openMenuGui();
@@ -78,10 +84,15 @@ public class OnInventoryClickEvent implements Listener{
 			return;
 		}
 		
-		if(e.getView().getTitle().startsWith(ChatColor.BLUE+ "Teleport")) {
+		if(e.getView().getTitle().startsWith(ChatColor.BLUE + "Teleport")) {			
 			if(e.getCurrentItem() == null)
 				return;
 			
+			if(e.getCurrentItem().getType() != Material.PLAYER_HEAD) {
+				e.setCancelled(true);
+				return;
+			}
+
 			ItemStack item = e.getCurrentItem();
 			
 			Player clickedPlayer = Bukkit.getPlayerExact(item.getItemMeta().getDisplayName().replace(ChatColor.YELLOW + "", ""));

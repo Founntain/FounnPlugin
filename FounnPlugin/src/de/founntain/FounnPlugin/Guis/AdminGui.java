@@ -27,11 +27,13 @@ public class AdminGui {
 		
 		ItemStack cancel = Utilities.createMenuItem(Material.RED_STAINED_GLASS_PANE, ChatColor.RED + "Zurück zum Hauptmenu");
 		
-		ItemStack filler = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+		ItemStack workbench = Utilities.createMenuItem(Material.CRAFTING_TABLE, "Werkbank öffnen");
+		
+		ItemStack filler = Utilities.createMenuItem(Material.GRAY_STAINED_GLASS_PANE, " ");
 		
 		ItemStack[] menuItems = {
 			tpPlayerToSelf,
-			filler,
+			workbench,
 			filler,
 			filler,
 			filler,

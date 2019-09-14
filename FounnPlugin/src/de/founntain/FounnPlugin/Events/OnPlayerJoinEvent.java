@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import de.founntain.FounnPlugin.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
 public class OnPlayerJoinEvent implements Listener{
@@ -17,6 +18,11 @@ public class OnPlayerJoinEvent implements Listener{
 		Player player = e.getPlayer();
 		
 		Bukkit.broadcastMessage("[" + ChatColor.GREEN + "+" + ChatColor.WHITE +"] "+ player.getDisplayName());
+		
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			p.setPlayerListHeader(Utilities.getTablistHeader());
+			p.setPlayerListFooter(Utilities.getTablistFooter());
+		}
 	}
 	
 }
