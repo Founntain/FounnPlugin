@@ -41,9 +41,9 @@ public class OnEntityDeathEvent implements Listener{
 				Random rdm = new Random();
 				
 				ItemStack[] dropItems = {
-						new ItemStack(Material.COOKED_BEEF, 3),
-						new ItemStack(Material.STONE, rdm.nextInt(16) + 10),
-						new ItemStack(Material.TNT, rdm.nextInt(20) + 5)
+						new ItemStack(Material.ROTTEN_FLESH, rdm.nextInt(4) + 1),
+						new ItemStack(Material.GUNPOWDER, rdm.nextInt(7)),
+						new ItemStack(Material.TNT, rdm.nextInt(4) + 1)
 				};
 				
 				ExperienceOrb xpOrb = zombie.getWorld().spawn(zombie.getLocation(), ExperienceOrb.class);

@@ -27,6 +27,7 @@ import de.founntain.FounnPlugin.Events.OnPlayerDeathEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerJoinEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerQuitEvent;
 import de.founntain.FounnPlugin.Recipes.ConcreteRecipe;
+import de.founntain.FounnPlugin.Recipes.GrassBlockRecipe;
 import de.founntain.FounnPlugin.Recipes.WhiteDyeRecipe;
 
 public class FounnPlugin extends JavaPlugin{
@@ -77,6 +78,7 @@ public class FounnPlugin extends JavaPlugin{
 		
 		new WhiteDyeRecipe(this);
 		new ConcreteRecipe(this);
+		new GrassBlockRecipe(this);
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
 	}
