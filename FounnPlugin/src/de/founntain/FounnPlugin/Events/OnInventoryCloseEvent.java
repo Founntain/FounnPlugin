@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import de.founntain.FounnPlugin.DeathItems;
 import de.founntain.FounnPlugin.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
@@ -49,6 +50,12 @@ public class OnInventoryCloseEvent implements Listener{
 			}	
 			player.sendMessage(Utilities.getCustomPrefix(ChatColor.YELLOW, "I") + ChatColor.GREEN + receiver.getDisplayName() + " hat erfolgreich deine Items erhalten!");
 			receiver.sendMessage(Utilities.getCustomPrefix(ChatColor.YELLOW, "I") + ChatColor.GREEN + player.getDisplayName() + " hat dir Items geschickt!");
+			
+			return;
+		}
+		
+		if(e.getView().getTitle().equals(player.getDisplayName() + " DeathItems")) {
+			DeathItems.Items.put(player.getUniqueId(), e.getInventory().getContents());
 		}
 	}
 }

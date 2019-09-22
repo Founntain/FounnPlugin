@@ -1,14 +1,16 @@
 package de.founntain.FounnPlugin;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import de.founntain.FounnPlugin.Commands.CoordCommand;
+import de.founntain.FounnPlugin.Commands.DeathBoxCommand;
 import de.founntain.FounnPlugin.Commands.SendItemCommand;
 import de.founntain.FounnPlugin.Commands.SpawnCustomMobCommand;
 import de.founntain.FounnPlugin.Commands.MenuCommand;
@@ -27,6 +29,7 @@ import de.founntain.FounnPlugin.Events.OnPlayerDeathEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerJoinEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerQuitEvent;
 import de.founntain.FounnPlugin.Recipes.ConcreteRecipe;
+import de.founntain.FounnPlugin.Recipes.DeathBoxRecipe;
 import de.founntain.FounnPlugin.Recipes.GrassBlockRecipe;
 import de.founntain.FounnPlugin.Recipes.WhiteDyeRecipe;
 
@@ -39,7 +42,8 @@ public class FounnPlugin extends JavaPlugin{
 	public FounnPlugin() {
 		this.Server = this.getServer();
 		
-		DeathCoord.DeathCoords = new ArrayList<DeathCoord>();
+		DeathCoord.DeathCoords = new HashMap<UUID, DeathCoord>();
+		DeathItems.Items = new HashMap<UUID, ItemStack[]>();
 	}
 	
 	@Override
@@ -70,6 +74,7 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerCommand("sendItem", new SendItemCommand());
 		this.registerCommand("menu", new MenuCommand());
 		this.registerCommand("spawnCustomMob", new SpawnCustomMobCommand(this));
+		this.registerCommand("deathBox", new DeathBoxCommand());
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering commands");
 		
@@ -79,6 +84,7 @@ public class FounnPlugin extends JavaPlugin{
 		new WhiteDyeRecipe(this);
 		new ConcreteRecipe(this);
 		new GrassBlockRecipe(this);
+		new DeathBoxRecipe(this);
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
 	}

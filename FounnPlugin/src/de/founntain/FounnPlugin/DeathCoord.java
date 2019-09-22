@@ -1,13 +1,13 @@
 package de.founntain.FounnPlugin;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class DeathCoord {
-	public static ArrayList<DeathCoord> DeathCoords;
+	public static HashMap<UUID, DeathCoord> DeathCoords;
 	
 	private Location Location;
 	private UUID PlayerID;
@@ -26,14 +26,7 @@ public class DeathCoord {
 	}
 	
 	public static DeathCoord getDeathCoordFromPlayer(Player player) {
-		for(DeathCoord d : DeathCoords) {
-			if(!d.getPlayerID().equals(player.getUniqueId())) 
-				continue;
-				
-			return d;
-		}
-		
-		return null;
+		return DeathCoords.get(player.getUniqueId());
 	}
 	
 	public boolean equals(Location loc) {

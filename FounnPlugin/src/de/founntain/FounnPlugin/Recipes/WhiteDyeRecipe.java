@@ -12,10 +12,10 @@ import net.md_5.bungee.api.ChatColor;
 public class WhiteDyeRecipe {
 	
 	private Plugin plugin;
-	private String prexix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
+	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
 	public WhiteDyeRecipe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prexix + "registering WhiteDyeRecipe...");
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering WhiteDyeRecipe...");
 		this.plugin = plugin;
 		this.createRecipe();
 	}

@@ -97,7 +97,7 @@ public class Utilities {
 	
 	public static String getTablistFooter() {
 		return ChatColor.GRAY + "\n Mit " + ChatColor.YELLOW + "/menu" + ChatColor.GRAY + " kanns du das Menu öffnen! \n" +
-				ChatColor.GRAY + " Spieler Online: " + ChatColor.DARK_PURPLE + Bukkit.getOnlinePlayers().size() + " ";
+				ChatColor.GRAY + " Spieler Online: " + ChatColor.DARK_PURPLE + (Bukkit.getOnlinePlayers().size() - 1) + " ";
 	}
 	
 	public static Color getColor(int i) {

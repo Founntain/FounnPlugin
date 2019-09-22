@@ -16,8 +16,11 @@ commands:
       description: Sends items to a given player
       usage: /back
    menu:
-      description: Opens a GUI for Admins
+      description: Opens the server menu
       usage: /menu
    spawnCustomMob:
-      description: Opens a GUI for Admins
-      usage: /menu
+      description: Spawns a custom mob
+      usage: /spawnCustomMob
+   deathBox:
+      description: Opens your deathbox
+      usage: /deathBox

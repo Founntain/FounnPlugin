@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import de.founntain.FounnPlugin.DeathItems;
 import de.founntain.FounnPlugin.FounnPlugin;
 import de.founntain.FounnPlugin.Utilities;
 import de.founntain.FounnPlugin.Guis.AdminGui;
@@ -26,9 +27,8 @@ public class OnInventoryClickEvent implements Listener{
 		
 		if(e.getView().getTitle().contains("Servermenu")) {
 			
-			if(e.getCurrentItem() == null) {
+			if(e.getCurrentItem() == null) 
 				return;
-			}
 			
 			switch(e.getCurrentItem().getType()) {
 				case ENCHANTED_GOLDEN_APPLE:
@@ -59,9 +59,8 @@ public class OnInventoryClickEvent implements Listener{
 		} 
 		
 		if(e.getView().getTitle().startsWith(ChatColor.DARK_PURPLE+ "Adminwerkzeuge")) {
-			if(e.getCurrentItem() == null) {
+			if(e.getCurrentItem() == null)
 				return;
-			}
 			
 			switch(e.getCurrentItem().getType()) {
 				case CLOCK:
@@ -97,17 +96,37 @@ public class OnInventoryClickEvent implements Listener{
 			
 			Player clickedPlayer = Bukkit.getPlayerExact(item.getItemMeta().getDisplayName().replace(ChatColor.YELLOW + "", ""));
 			
-			if(e.getView().getTitle().endsWith("to specific player")) {
+			if(e.getView().getTitle().endsWith("to specific player")) 
 				player.teleport(clickedPlayer.getLocation());
-			}else if(e.getView().getTitle().endsWith("specific player to you")) {
+			else if(e.getView().getTitle().endsWith("specific player to you")) 
 				clickedPlayer.teleport(player.getLocation());
-			}
+			
 			
 			e.setCancelled(true);
 			
 			player.closeInventory();
 			
 			return;
+		}
+		
+		if(e.getView().getTitle().equals(player.getDisplayName() + " DeathItems")) {		
+			if(e.getCurrentItem().getType() == Material.CHEST) {
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.DARK_PURPLE + "Alles nehmen")) {
+					for(ItemStack item : e.getInventory().getContents()) {
+						if(item == null)
+							continue;
+						
+						if(item.getType() == Material.CHEST && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_PURPLE + "Alles nehmen")) 
+							continue;		
+						
+						player.getInventory().addItem(item);
+					}
+					
+					player.closeInventory();
+					
+					DeathItems.Items.remove(player.getUniqueId());
+				}
+			}
 		}
 	}
 }

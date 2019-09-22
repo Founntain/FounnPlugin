@@ -11,10 +11,10 @@ import net.md_5.bungee.api.ChatColor;
 
 public class GrassBlockRecipe {
 	private Plugin plugin;
-	private String prexix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
+	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
 	public GrassBlockRecipe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prexix + "registering ConcreteRecipes...");
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering GrassBlockRecipe...");
 		this.plugin = plugin;
 		this.createRecipe();
 	}
