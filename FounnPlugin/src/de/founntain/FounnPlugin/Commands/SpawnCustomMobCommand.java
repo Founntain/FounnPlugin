@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import de.founntain.FounnPlugin.FounnPlugin;
+import de.founntain.FounnPlugin.CustomMobs.FireworkCreeperMob;
 import de.founntain.FounnPlugin.CustomMobs.FreedomfighterMob;
 
 public class SpawnCustomMobCommand implements CommandExecutor{
@@ -25,26 +26,29 @@ public class SpawnCustomMobCommand implements CommandExecutor{
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 			
-			if(!player.getUniqueId().equals(FounnPlugin.FounntainUUID))
+			if(!player.getUniqueId().equals(FounnPlugin.founntainUUID))
 				return true;
 			
 			if(args.length != 2) {
 				return true;
 			}
+			
+			Player target = (Player) Bukkit.getPlayer(args[0]);
+			Location loc = target.getLocation();
 				
 			switch(args[1].toLowerCase()) {
 				case "boomSpawnerZombie":
-					
-					Player target = (Player) Bukkit.getPlayer(args[0]);
-					
-					Location loc = target.getLocation();
-					
 					loc.setY(loc.getY() + 3);
 					
 					FreedomfighterMob freedomfighterMob = new FreedomfighterMob(this.plugin);
 					freedomfighterMob.spawnFreedomFighter(loc, target);
 					
 					return true;
+				case "silversterparty":
+					loc.setY(loc.getY() + 3);
+					
+					FireworkCreeperMob fireworkCreeperMob = new FireworkCreeperMob(this.plugin);
+					fireworkCreeperMob.spawnMob(loc, target);
 				default:
 					return true;
 			}

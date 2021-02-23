@@ -10,15 +10,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import de.founntain.FounnPlugin.Commands.CoordCommand;
+import de.founntain.FounnPlugin.Commands.DayCommand;
 import de.founntain.FounnPlugin.Commands.DeathBoxCommand;
 import de.founntain.FounnPlugin.Commands.SendItemCommand;
+import de.founntain.FounnPlugin.Commands.SpawnCommand;
 import de.founntain.FounnPlugin.Commands.SpawnCustomMobCommand;
 import de.founntain.FounnPlugin.Commands.MenuCommand;
 import de.founntain.FounnPlugin.Commands.BackCommand;
+import de.founntain.FounnPlugin.Commands.ClearInventoryCommand;
 import de.founntain.FounnPlugin.Commands.StartKitCommand;
-
+import de.founntain.FounnPlugin.Commands.TestCommand;
+import de.founntain.FounnPlugin.Commands.WeatherCommand;
 import de.founntain.FounnPlugin.Events.OnAsyncPlayerChatEvent;
 import de.founntain.FounnPlugin.Events.OnBlockBreakEvent;
+import de.founntain.FounnPlugin.Events.OnCraftItemEvent;
 import de.founntain.FounnPlugin.Events.OnEnitityDamageByEnityEvent;
 import de.founntain.FounnPlugin.Events.OnEntityDamageEvent;
 import de.founntain.FounnPlugin.Events.OnEntityDeathEvent;
@@ -30,20 +35,23 @@ import de.founntain.FounnPlugin.Events.OnPlayerJoinEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerQuitEvent;
 import de.founntain.FounnPlugin.Recipes.ConcreteRecipe;
 import de.founntain.FounnPlugin.Recipes.DeathBoxRecipe;
+import de.founntain.FounnPlugin.Recipes.EnhancedEnchantmentsRecipes;
 import de.founntain.FounnPlugin.Recipes.GrassBlockRecipe;
+import de.founntain.FounnPlugin.Recipes.SlapsToMaterialRecipe;
+import de.founntain.FounnPlugin.Recipes.StairsToMaterialRecipe;
 import de.founntain.FounnPlugin.Recipes.WhiteDyeRecipe;
 
 public class FounnPlugin extends JavaPlugin{
 	
-	private Server Server;
-	private String ConsolePrefix = "[" + ChatColor.BLUE +"FounnPlugin" + ChatColor.WHITE + "] ";
-	public static UUID FounntainUUID = UUID.fromString("1f146f64-96fb-400c-971a-8d68e7d96b69");
+	private Server server;
+	private String consolePrefix = "[" + ChatColor.BLUE +"FounnPlugin" + ChatColor.WHITE + "] ";
+	public static UUID founntainUUID = UUID.fromString("1f146f64-96fb-400c-971a-8d68e7d96b69");
 	
 	public FounnPlugin() {
-		this.Server = this.getServer();
+		this.server = this.getServer();
 		
-		DeathCoord.DeathCoords = new HashMap<UUID, DeathCoord>();
-		DeathItems.Items = new HashMap<UUID, ItemStack[]>();
+		DeathCoord.deathCoords = new HashMap<UUID, DeathCoord>();
+		DeathItems.items = new HashMap<UUID, ItemStack[]>();
 	}
 	
 	@Override
@@ -62,6 +70,7 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerEvent(new OnAsyncPlayerChatEvent());
 		this.registerEvent(new OnInventoryClickEvent());
 		this.registerEvent(new OnInventoryCloseEvent());
+		this.registerEvent(new OnCraftItemEvent());
 		
 		this.sendConsoleMessage(ChatColor.GREEN + "finished registering events...");
 		
@@ -75,6 +84,11 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerCommand("menu", new MenuCommand());
 		this.registerCommand("spawnCustomMob", new SpawnCustomMobCommand(this));
 		this.registerCommand("deathBox", new DeathBoxCommand());
+		this.registerCommand("clearInv", new ClearInventoryCommand());
+		this.registerCommand("day", new DayCommand());
+		this.registerCommand("spawn", new SpawnCommand());
+		this.registerCommand("test", new TestCommand());
+		this.registerCommand("w", new WeatherCommand());
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering commands");
 		
@@ -85,6 +99,9 @@ public class FounnPlugin extends JavaPlugin{
 		new ConcreteRecipe(this);
 		new GrassBlockRecipe(this);
 		new DeathBoxRecipe(this);
+		new StairsToMaterialRecipe(this);
+		new SlapsToMaterialRecipe(this);
+		new EnhancedEnchantmentsRecipes(this);
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
 	}
@@ -95,11 +112,11 @@ public class FounnPlugin extends JavaPlugin{
 	}	
 	
 	private void registerEvent(Listener listener) {
-		this.Server.getPluginManager().registerEvents(listener, this);
+		this.server.getPluginManager().registerEvents(listener, this);
 	}
 	
 	private void sendConsoleMessage(String msg) {
-		this.Server.getConsoleSender().sendMessage(this.ConsolePrefix + msg);
+		this.server.getConsoleSender().sendMessage(this.consolePrefix + msg);
 	}
 	
 	private void registerCommand(String command, CommandExecutor commandExecutor) {

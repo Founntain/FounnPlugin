@@ -25,7 +25,7 @@ public class BackCommand implements CommandExecutor{
 			
 			player.teleport(deathCoord.getLocation());
 			
-			DeathCoord.DeathCoords.remove(player.getUniqueId());
+			DeathCoord.deathCoords.remove(player.getUniqueId());
 			
 			player.sendMessage(ChatColor.GREEN + "Du wurdest auf die angegebene Position teleportiert.");
 		}

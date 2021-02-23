@@ -15,7 +15,7 @@ public class DeathBoxCommand implements CommandExecutor{
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 			
-			if(!DeathItems.Items.containsKey(player.getUniqueId())) {
+			if(!DeathItems.items.containsKey(player.getUniqueId())) {
 				player.sendMessage(Utilities.getErrorPrefix() + "Konnte keine Deathbox finden!");
 			}
 			

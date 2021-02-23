@@ -29,9 +29,9 @@ public class OnPlayerDeathEvent implements Listener{
 			String deathMessage;
 			
 			DeathCoord deathCoord = new DeathCoord(loc, player.getUniqueId());
-			DeathCoord.DeathCoords.remove(player.getUniqueId());
+			DeathCoord.deathCoords.remove(player.getUniqueId());
 			
-			DeathCoord.DeathCoords.put(player.getUniqueId(), deathCoord);
+			DeathCoord.deathCoords.put(player.getUniqueId(), deathCoord);
 			
 			deathMessage = ChatColor.RED + "Du bist gestorben." + " Schreib" + ChatColor.GREEN + " /back "
 					+ ChatColor.RED + "um dich zu deinem Todespunkt zu teleportieren";
@@ -50,7 +50,7 @@ public class OnPlayerDeathEvent implements Listener{
 					ItemMeta metaData = item.getItemMeta();
 					
 					if(metaData.getDisplayName().equals(ChatColor.DARK_PURPLE + "Deathbox")) {						
-						DeathItems.Items.put(player.getUniqueId(), inventory.getContents());
+						DeathItems.items.put(player.getUniqueId(), inventory.getContents());
 						e.getDrops().removeAll(e.getDrops());
 						
 						player.sendMessage(ChatColor.DARK_PURPLE + "Deathbox" + ChatColor.WHITE + " >> " + ChatColor.YELLOW + "Du hattest eine Deathbox dabei, schreibe " + ChatColor.DARK_PURPLE+ "/deathbox" + ChatColor.YELLOW + " um an deine Items zu kommen!");

@@ -25,9 +25,7 @@ public class OnEntityDeathEvent implements Listener{
 	
 	@EventHandler
 	public void onEntityDeathEvent(EntityDeathEvent e) {
-		
 		if(e.getEntity() instanceof Zombie) {
-			
 			Zombie zombie = (Zombie) e.getEntity();
 			
 			if(zombie.hasMetadata("boomZombie")) {
@@ -61,7 +59,7 @@ public class OnEntityDeathEvent implements Listener{
 			
 			Zombie zombie = (Zombie) e.getEntity();
 			
-			if(zombie.isBaby())
+			if(!zombie.isAdult())
 				return;
 			
 			Random rdm = new Random();

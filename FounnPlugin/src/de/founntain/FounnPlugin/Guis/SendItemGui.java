@@ -7,15 +7,15 @@ import org.bukkit.inventory.Inventory;
 import net.md_5.bungee.api.ChatColor;
 
 public class SendItemGui {
-	private Player Player;
-	private Inventory Gui;
+	private Player player;
+	private Inventory gui;
 	
 	public SendItemGui(Player player, Player receiver) {
-		this.Player = player;
-		this.Gui = Bukkit.createInventory(player, 27, ChatColor.BLUE + "Receiver: " + receiver.getDisplayName());
+		this.player = player;
+		this.gui = Bukkit.createInventory(player, 27, ChatColor.BLUE + "Receiver: " + receiver.getDisplayName());
 	}
 	
 	public void openSendItemToPlyerGui() {
-		this.Player.openInventory(this.Gui);
+		this.player.openInventory(this.gui);
 	}
 }

@@ -14,23 +14,23 @@ import org.bukkit.inventory.meta.SkullMeta;
 import de.founntain.FounnPlugin.Utilities;
 
 public class TeleportGui {
-	private Player Player;
-	private Inventory Gui;
-	private boolean ToPlayer;
+	private Player player;
+	private Inventory gui;
+	private boolean toPlayer;
 	
 	public TeleportGui(Player player, boolean toPlayer) {
-		this.Player = player;
-		this.Gui = Bukkit.createInventory(player, 36, ChatColor.BLUE+ "Teleport " + (toPlayer
+		this.player = player;
+		this.gui = Bukkit.createInventory(player, 36, ChatColor.BLUE+ "Teleport " + (toPlayer
 				? "to specific player"
 				: "specific player to you"));
-		this.ToPlayer = toPlayer;
+		this.toPlayer = toPlayer;
 	}
 	
 	public void openTeleportGui() {
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 		
 		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-			if(onlinePlayer.getUniqueId().equals(this.Player.getUniqueId()))
+			if(onlinePlayer.getUniqueId().equals(this.player.getUniqueId()))
 				continue;
 			
 			ItemStack head = new ItemStack(Material.PLAYER_HEAD);
@@ -45,7 +45,7 @@ public class TeleportGui {
 			
 			headLore.add(ChatColor.GRAY + "Current World: " + Utilities.getFormatedEnvironmentName(loc.getWorld().getEnvironment()));
 			
-			if(this.ToPlayer) {
+			if(this.toPlayer) {
 				headLore.add(ChatColor.GRAY + "Last known location:");
 				headLore.add("X: " +(int)loc.getX());
 				headLore.add("Y: " +(int)loc.getY());
@@ -62,8 +62,8 @@ public class TeleportGui {
 		ItemStack[] itemsToAdd = new ItemStack[items.size()];
 		itemsToAdd = items.toArray(itemsToAdd);
 		
-		this.Gui.setContents(itemsToAdd);
+		this.gui.setContents(itemsToAdd);
 		
-		this.Player.openInventory(this.Gui);
+		this.player.openInventory(this.gui);
 	}
 }

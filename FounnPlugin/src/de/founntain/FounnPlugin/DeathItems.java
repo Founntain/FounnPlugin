@@ -11,13 +11,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class DeathItems {
-	public static HashMap<UUID, ItemStack[]> Items;
+	public static HashMap<UUID, ItemStack[]> items;
 	
 	public static void showDeathItems(UUID playerId) {
 		Player player = Bukkit.getPlayer(playerId);
 		Inventory deathItems = Bukkit.createInventory(player, 54, player.getDisplayName() + " DeathItems");
 		
-		ItemStack[] itemsFromPlayer = Items.get(playerId);
+		ItemStack[] itemsFromPlayer = items.get(playerId);
 		
 		for(ItemStack item : itemsFromPlayer) {
 			if(item == null) 

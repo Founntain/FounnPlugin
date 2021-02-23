@@ -1,6 +1,7 @@
 package de.founntain.FounnPlugin;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -10,10 +11,12 @@ import org.bukkit.Material;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -181,5 +184,89 @@ public class Utilities {
         fireworkMeta.addEffect(effect);
         
         firework.setFireworkMeta(fireworkMeta);
+	}
+	
+	public static boolean CheckIfBlockIsOre(Material material) {
+		switch(material) {
+			case COAL_ORE:
+			case IRON_ORE:
+			case GOLD_ORE:
+			case LAPIS_ORE:
+			case REDSTONE_ORE:
+			case DIAMOND_ORE:
+			case EMERALD_ORE:
+			case NETHER_QUARTZ_ORE:
+				return true;
+			default:
+				return false;
+		}
+	}
+	
+	public static ItemStack GetDropItem(Material material) {
+		
+		Random rdm = new Random();
+		
+		switch(material) {
+			case COAL_ORE:
+				return new ItemStack(Material.COAL);
+			case IRON_ORE:
+				return new ItemStack(Material.IRON_ORE);
+			case GOLD_ORE:
+				return new ItemStack(Material.GOLD_ORE);
+			case LAPIS_ORE:
+				return new ItemStack(Material.LAPIS_LAZULI, rdm.nextInt(5) + 4);
+			case REDSTONE_ORE:
+				return new ItemStack(Material.REDSTONE, rdm.nextInt(5) + 4);
+			case DIAMOND_ORE:
+				return new ItemStack(Material.DIAMOND);
+			case EMERALD_ORE:
+				return new ItemStack(Material.EMERALD);
+			case NETHER_QUARTZ_ORE:
+				return new ItemStack(Material.QUARTZ);
+			default:
+				return null;
+		}
+	}
+	
+	public static ArrayList<Location> GetOtherBlocksAroundSelf(Location location) {
+		double x = location.getX();
+		double y = location.getY();
+		double z = location.getZ();
+		
+		ArrayList<Location> blockLocations = new ArrayList<>();
+		
+		blockLocations.add(new Location(location.getWorld(), x + 1, y, z));
+		blockLocations.add(new Location(location.getWorld(), x - 1, y, z));
+		blockLocations.add(new Location(location.getWorld(), x, y + 1, z));
+		blockLocations.add(new Location(location.getWorld(), x, y - 1, z));
+		blockLocations.add(new Location(location.getWorld(), x, y, z + 1));
+		blockLocations.add(new Location(location.getWorld(), x, y, z - 1));
+		
+		return blockLocations;
+	}
+	
+	public static ArrayList<Pair<Enchantment, Integer>> GetEnchantmentsFromItem(ItemStack item) {
+		ArrayList<Pair<Enchantment, Integer>> enchantments = new ArrayList<Pair<Enchantment, Integer>>();
+		
+		EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
+		
+		int storedCount = meta.getStoredEnchants().keySet().size();
+		int count = meta.getEnchants().keySet().size();
+		
+		if(storedCount == 0 && count == 0)
+			return enchantments;
+		
+		Map<Enchantment, Integer> enchs = null;
+		
+		if(storedCount > 0)
+			enchs = meta.getStoredEnchants();
+		else if(count > 0)
+			enchs = meta.getEnchants();
+		
+		for(Map.Entry<Enchantment, Integer> entry : enchs.entrySet()) {
+			enchantments.add(new Pair<Enchantment, Integer>(entry.getKey(), entry.getValue()));
+		}
+		
+		return enchantments;
 	}
 }

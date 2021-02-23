@@ -10,12 +10,12 @@ import org.bukkit.inventory.ItemStack;
 import de.founntain.FounnPlugin.Utilities;
 
 public class MenuGui {
-	private Player Player;
-	private Inventory Gui;
+	private Player player;
+	private Inventory gui;
 	
 	public MenuGui(Player player) {
-		this.Player = player;
-		this.Gui = Bukkit.createInventory(player, 9, ChatColor.DARK_PURPLE + "Servermenu");
+		this.player = player;
+		this.gui = Bukkit.createInventory(player, 9, ChatColor.DARK_PURPLE + "Servermenu");
 	}
 	
 	public void openMenuGui() {
@@ -28,6 +28,9 @@ public class MenuGui {
 		ItemStack tpToPlayer = Utilities.createMenuItem(Material.COMPASS, ChatColor.YELLOW + "Zu Spieler porten", new String[] {
 				ChatColor.GRAY + "Teleportiere dich zu einem",
 				ChatColor.GRAY + "anderem " + ChatColor.YELLOW + "Spieler" + ChatColor.GRAY + "!"
+		});
+		ItemStack enchantItem = Utilities.createMenuItem(Material.ENCHANTED_BOOK, ChatColor.YELLOW + "Item verzaubern", new String[] {
+			ChatColor.GRAY + "Verzaubere ein Item mit einem verzauberten Buch!"	
 		});
 		
 		ItemStack trash = Utilities.createMenuItem(Material.LAVA_BUCKET, ChatColor.RED + "Müllverbrennungsanlage", new String[] {
@@ -42,8 +45,8 @@ public class MenuGui {
 		ItemStack[] menuItems = {
 				adminMenu,
 				tpToPlayer,
+				enchantItem,
 				trash,
-				filler,
 				filler,
 				filler,
 				filler,
@@ -51,8 +54,8 @@ public class MenuGui {
 				filler
 		};
 		
-		this.Gui.setContents(menuItems);
+		this.gui.setContents(menuItems);
 		
-		this.Player.openInventory(this.Gui);
+		this.player.openInventory(this.gui);
 	}
 }

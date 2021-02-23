@@ -10,12 +10,12 @@ import de.founntain.FounnPlugin.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
 public class AdminGui {
-	private Player Player;
-	private Inventory Gui;
+	private Player player;
+	private Inventory gui;
 	
 	public AdminGui(Player player) {
-		this.Player = player;
-		this.Gui = Bukkit.createInventory(player, 9, ChatColor.DARK_PURPLE + "Adminwerkzeuge");
+		this.player = player;
+		this.gui = Bukkit.createInventory(player, 9, ChatColor.DARK_PURPLE + "Adminwerkzeuge");
 	}
 	
 	public void openAdminGui() {
@@ -43,8 +43,8 @@ public class AdminGui {
 			cancel
 		};
 		
-		this.Gui.setContents(menuItems);
+		this.gui.setContents(menuItems);
 		
-		this.Player.openInventory(this.Gui);
+		this.player.openInventory(this.gui);
 	}
 }

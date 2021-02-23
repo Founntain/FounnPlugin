@@ -39,8 +39,7 @@ public class FreedomfighterMob {
 	}
 	
 	private void startMinionSpawn(Plugin plugin, Zombie zombie, Player player) {
-		new BukkitRunnable() {
-			
+		new BukkitRunnable() {		
 			@Override
 			public void run() {
 				if(zombie.isDead()) {
@@ -64,7 +63,6 @@ public class FreedomfighterMob {
 				zombieBaby.setMetadata("boomZombie", new FixedMetadataValue(plugin, "boomZombie"));	
 				
 				zombieBaby.setTarget(player);
-				zombieBaby.setBaby(true);
 				zombieBaby.setHealth(0.1);
 				
 				EntityEquipment equipment = zombieBaby.getEquipment();

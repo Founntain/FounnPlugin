@@ -7,29 +7,29 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class DeathCoord {
-	public static HashMap<UUID, DeathCoord> DeathCoords;
+	public static HashMap<UUID, DeathCoord> deathCoords;
 	
-	private Location Location;
-	private UUID PlayerID;
+	private Location location;
+	private UUID playerID;
 	
-	public DeathCoord(Location location, UUID PlayerID) {
-		this.Location = location;
-		this.PlayerID = PlayerID;
+	public DeathCoord(Location location, UUID playerID) {
+		this.location = location;
+		this.playerID = playerID;
 	}
 	
 	public Location getLocation() {
-		return this.Location;
+		return this.location;
 	}
 	
 	public UUID getPlayerID() {
-		return this.PlayerID;
+		return this.playerID;
 	}
 	
 	public static DeathCoord getDeathCoordFromPlayer(Player player) {
-		return DeathCoords.get(player.getUniqueId());
+		return deathCoords.get(player.getUniqueId());
 	}
 	
 	public boolean equals(Location loc) {
-		return this.Location == loc;		
+		return this.location == loc;		
 	}
 }

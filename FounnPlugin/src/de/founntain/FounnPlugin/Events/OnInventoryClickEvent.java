@@ -7,11 +7,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-
 import de.founntain.FounnPlugin.DeathItems;
 import de.founntain.FounnPlugin.FounnPlugin;
 import de.founntain.FounnPlugin.Utilities;
 import de.founntain.FounnPlugin.Guis.AdminGui;
+import de.founntain.FounnPlugin.Guis.EnchantmentGui;
 import de.founntain.FounnPlugin.Guis.MenuGui;
 import de.founntain.FounnPlugin.Guis.TeleportGui;
 import net.md_5.bungee.api.ChatColor;
@@ -32,7 +32,7 @@ public class OnInventoryClickEvent implements Listener{
 			
 			switch(e.getCurrentItem().getType()) {
 				case ENCHANTED_GOLDEN_APPLE:
-					if(!player.getUniqueId().equals(FounnPlugin.FounntainUUID)) {
+					if(!player.getUniqueId().equals(FounnPlugin.founntainUUID)) {
 						player.closeInventory();
 						player.sendMessage(Utilities.getErrorPrefix() + ChatColor.RED + "Du hast nicht genug Berechtigungen!");
 						e.setCancelled(true);
@@ -45,6 +45,10 @@ public class OnInventoryClickEvent implements Listener{
 				case COMPASS:
 					teleportGui = new TeleportGui(player, true);
 					teleportGui.openTeleportGui();
+					break;
+				case ENCHANTED_BOOK:
+					EnchantmentGui enchantmentGui = new EnchantmentGui(player);
+					enchantmentGui.openGui();
 					break;
 				case LAVA_BUCKET:
 					player.openInventory(Bukkit.createInventory(player, 54, ChatColor.RED + "Müllverbrennungsanlage"));
@@ -124,7 +128,7 @@ public class OnInventoryClickEvent implements Listener{
 					
 					player.closeInventory();
 					
-					DeathItems.Items.remove(player.getUniqueId());
+					DeathItems.items.remove(player.getUniqueId());
 				}
 			}
 		}

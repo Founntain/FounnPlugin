@@ -1,9 +1,6 @@
 package de.founntain.FounnPlugin.Recipes;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import net.md_5.bungee.api.ChatColor;
@@ -19,7 +16,7 @@ public class FireFleshToLeatherRecipe {
 	}
 	
 	public void createRecipe() {
-		FurnaceRecipe furnaceRecipe = new FurnaceRecipe(new ItemStack(Material.LEATHER)
+		//FurnaceRecipe furnaceRecipe = new FurnaceRecipe(new ItemStack(Material.LEATHER)
 		
 	}
 }

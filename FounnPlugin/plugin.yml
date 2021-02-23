@@ -1,7 +1,7 @@
 name: FounnPlugin
 main: de.founntain.FounnPlugin.FounnPlugin
 version: 1.0
-api-version: 1.13
+api-version: 1.16
 commands:
    startKit:
       description: Gives you some start tools
@@ -24,3 +24,18 @@ commands:
    deathBox:
       description: Opens your deathbox
       usage: /deathBox
+   clearInv:
+      description: Clears your inventory
+      usage: /clearInv
+   day:
+      description: Makes day
+      usage: /day
+   spawn:
+      description: Teleports you to your spawnpoint. If you not slept in a bed yet, world spawn is used
+      usage: /spawn
+   w:
+      description: Change the weater c => clear, r => rain, t => thunder
+      usage: /w
+   test:
+      description: SUCK MY DICk fuck u
+      usage: /test
