@@ -24,7 +24,9 @@ public class OnCraftItemEvent implements Listener{
 		
 		try {
 			this.tryEnchantPlus(e);
-		}catch(ClassCastException ex) { }	
+		}catch(ClassCastException ex) {
+			return;
+		}	
 	}
 	
 	private void tryEnchantPlus(CraftItemEvent e) throws ClassCastException{
