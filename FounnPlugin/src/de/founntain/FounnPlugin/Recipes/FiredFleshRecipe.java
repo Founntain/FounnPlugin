@@ -34,10 +34,10 @@ public class FiredFleshRecipe {
 		
 		firedFlesh.setItemMeta(meta);
 		
-		ShapelessRecipe recipe = new ShapelessRecipe(new NamespacedKey(plugin, "firedFleshRecipe"), firedFlesh);
+		ShapelessRecipe recipe = new ShapelessRecipe(new NamespacedKey(this.plugin, "firedFleshRecipe"), new ItemStack(Material.LEATHER));
 		
 		recipe.addIngredient(Material.ROTTEN_FLESH);
-		recipe.addIngredient(Material.BLAZE_ROD);
+		recipe.addIngredient(Material.BLAZE_POWDER);
 		
 		plugin.getServer().addRecipe(recipe);
 	}

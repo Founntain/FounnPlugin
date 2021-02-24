@@ -29,6 +29,7 @@ import de.founntain.FounnPlugin.Events.OnEntityDamageEvent;
 import de.founntain.FounnPlugin.Events.OnEntityDeathEvent;
 import de.founntain.FounnPlugin.Events.OnInventoryClickEvent;
 import de.founntain.FounnPlugin.Events.OnInventoryCloseEvent;
+import de.founntain.FounnPlugin.Events.OnPlayerBedEnterEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerChangedWorldEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerDeathEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerJoinEvent;
@@ -71,6 +72,7 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerEvent(new OnInventoryClickEvent());
 		this.registerEvent(new OnInventoryCloseEvent());
 		this.registerEvent(new OnCraftItemEvent());
+		this.registerEvent(new OnPlayerBedEnterEvent());
 		
 		this.sendConsoleMessage(ChatColor.GREEN + "finished registering events...");
 		

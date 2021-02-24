@@ -15,9 +15,6 @@ public class DayCommand implements CommandExecutor{
 		
 		if(sender instanceof Player) {
 			Player player = (Player)sender;
-			
-			if(!player.isOp())
-				return false;
 
 			World world = player.getWorld();
 			world.setTime(1000);

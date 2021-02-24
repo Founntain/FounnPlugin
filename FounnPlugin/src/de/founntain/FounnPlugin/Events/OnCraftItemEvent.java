@@ -18,10 +18,7 @@ public class OnCraftItemEvent implements Listener{
 	public OnCraftItemEvent() { }
 
 	@EventHandler
-	public void onCraftItemEvent(CraftItemEvent e) {
-		System.out.println("EVENT");
-		System.out.println(e);
-		
+	public void onCraftItemEvent(CraftItemEvent e) {		
 		try {
 			this.tryEnchantPlus(e);
 		}catch(ClassCastException ex) {
