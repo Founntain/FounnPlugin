@@ -1,30 +1,28 @@
 package de.founntain.FounnPlugin.Commands;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import de.founntain.FounnPlugin.DeathCoord;
-import de.founntain.FounnPlugin.PlayerTeleportCoords;
 
-public class BackCommand implements CommandExecutor{
+public class DeathCoordCommand implements CommandExecutor{
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 
-			Location lastTeleportLocation = PlayerTeleportCoords.playerTeleportCoords.get(player.getUniqueId());
+			DeathCoord deathCoord = DeathCoord.getDeathCoordFromPlayer(player);
 			
-			if(lastTeleportLocation == null) {
-				player.sendMessage(ChatColor.RED + "Leider konnte der Server deine letzte position nicht finden!");
+			if(deathCoord == null) {
+				player.sendMessage(ChatColor.RED + "Leider konnte der Server nicht die Todeskoordinate finden");
 				return true;
 			}
 			
-			player.teleport(lastTeleportLocation);
+			player.teleport(deathCoord.getLocation());
 			
 			DeathCoord.deathCoords.remove(player.getUniqueId());
 			

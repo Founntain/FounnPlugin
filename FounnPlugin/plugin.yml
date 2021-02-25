@@ -10,8 +10,11 @@ commands:
       description: Tells everyone your coords
       usage: /coords
    back:
-      description: Tps you on your death position
+      description: Tps you to your last before teleport location
       usage: /back
+   deathCoord:
+      description: Tps you on your death position
+      usage: /deathCoord
    sendItem:
       description: Sends items to a given player
       usage: /back

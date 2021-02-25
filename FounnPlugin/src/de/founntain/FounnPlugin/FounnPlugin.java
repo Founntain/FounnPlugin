@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -16,6 +17,7 @@ import de.founntain.FounnPlugin.Commands.SendItemCommand;
 import de.founntain.FounnPlugin.Commands.SpawnCommand;
 import de.founntain.FounnPlugin.Commands.SpawnCustomMobCommand;
 import de.founntain.FounnPlugin.Commands.MenuCommand;
+import de.founntain.FounnPlugin.Commands.DeathCoordCommand;
 import de.founntain.FounnPlugin.Commands.BackCommand;
 import de.founntain.FounnPlugin.Commands.ClearInventoryCommand;
 import de.founntain.FounnPlugin.Commands.StartKitCommand;
@@ -36,6 +38,7 @@ import de.founntain.FounnPlugin.Events.OnPlayerDeathEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerItemBreakEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerJoinEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerQuitEvent;
+import de.founntain.FounnPlugin.Events.OnPlayerTeleportEvent;
 import de.founntain.FounnPlugin.Recipes.ConcreteRecipe;
 import de.founntain.FounnPlugin.Recipes.DeathBoxRecipe;
 import de.founntain.FounnPlugin.Recipes.EnhancedEnchantmentsRecipes;
@@ -56,6 +59,7 @@ public class FounnPlugin extends JavaPlugin{
 		DeathCoord.deathCoords = new HashMap<UUID, DeathCoord>();
 		DeathItems.items = new HashMap<UUID, ItemStack[]>();
 		BedMap.usersInBeds = new HashMap<UUID, Boolean>();
+		PlayerTeleportCoords.playerTeleportCoords = new HashMap<UUID, Location>();
 	}
 	
 	@Override
@@ -73,7 +77,13 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerCommands();
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering commands");
-		
+	}
+	
+	@Override
+	public void onDisable() { }	
+	
+	@Override
+	public void onLoad() {
 		//Registering Recipes
 		this.sendConsoleMessage(ChatColor.YELLOW + "registering recipes");
 		
@@ -81,11 +91,6 @@ public class FounnPlugin extends JavaPlugin{
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
 	}
-	
-	@Override
-	public void onDisable() {
-		
-	}	
 	
 	private void sendConsoleMessage(String msg) {
 		this.server.getConsoleSender().sendMessage(this.consolePrefix + msg);
@@ -107,6 +112,7 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerEvent(new OnPlayerBedEnterEvent());
 		this.registerEvent(new OnPlayerItemBreakEvent());
 		this.registerEvent(new OnBlockPlaceEvent());
+		this.registerEvent(new OnPlayerTeleportEvent());
 	}
 	
 	private void registerEvent(Listener listener) {
@@ -121,6 +127,7 @@ public class FounnPlugin extends JavaPlugin{
 	private void registerCommands() {
 		this.registerCommand("startKit", new StartKitCommand());
 		this.registerCommand("coords", new CoordCommand());
+		this.registerCommand("deathCoord", new DeathCoordCommand());
 		this.registerCommand("back", new BackCommand());
 		this.registerCommand("sendItem", new SendItemCommand());
 		this.registerCommand("menu", new MenuCommand());
