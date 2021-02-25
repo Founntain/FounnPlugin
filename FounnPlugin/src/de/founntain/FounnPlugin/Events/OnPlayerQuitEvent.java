@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import de.founntain.FounnPlugin.BedMap;
 import de.founntain.FounnPlugin.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
@@ -16,6 +17,8 @@ public class OnPlayerQuitEvent implements Listener{
 		e.setQuitMessage(null);
 		
 		Player player = e.getPlayer();
+		
+		BedMap.removeIfExists(player.getUniqueId());
 		
 		Bukkit.broadcastMessage("[" + ChatColor.RED + "-" + ChatColor.WHITE +"] "+ player.getDisplayName());
 		

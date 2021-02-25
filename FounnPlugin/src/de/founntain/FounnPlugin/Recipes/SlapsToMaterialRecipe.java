@@ -85,7 +85,7 @@ public class SlapsToMaterialRecipe {
 				Material.PRISMARINE_BRICKS,
 				Material.PRISMARINE,
 				Material.PURPUR_BLOCK,
-				Material.QUARTZ,
+				Material.QUARTZ_BLOCK,
 				Material.RED_NETHER_BRICKS,
 				Material.RED_SANDSTONE,
 				Material.SANDSTONE,

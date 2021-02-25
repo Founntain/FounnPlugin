@@ -23,6 +23,7 @@ import de.founntain.FounnPlugin.Commands.TestCommand;
 import de.founntain.FounnPlugin.Commands.WeatherCommand;
 import de.founntain.FounnPlugin.Events.OnAsyncPlayerChatEvent;
 import de.founntain.FounnPlugin.Events.OnBlockBreakEvent;
+import de.founntain.FounnPlugin.Events.OnBlockPlaceEvent;
 import de.founntain.FounnPlugin.Events.OnCraftItemEvent;
 import de.founntain.FounnPlugin.Events.OnEnitityDamageByEnityEvent;
 import de.founntain.FounnPlugin.Events.OnEntityDamageEvent;
@@ -32,6 +33,7 @@ import de.founntain.FounnPlugin.Events.OnInventoryCloseEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerBedEnterEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerChangedWorldEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerDeathEvent;
+import de.founntain.FounnPlugin.Events.OnPlayerItemBreakEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerJoinEvent;
 import de.founntain.FounnPlugin.Events.OnPlayerQuitEvent;
 import de.founntain.FounnPlugin.Recipes.ConcreteRecipe;
@@ -53,13 +55,43 @@ public class FounnPlugin extends JavaPlugin{
 		
 		DeathCoord.deathCoords = new HashMap<UUID, DeathCoord>();
 		DeathItems.items = new HashMap<UUID, ItemStack[]>();
+		BedMap.usersInBeds = new HashMap<UUID, Boolean>();
 	}
 	
 	@Override
 	public void onEnable() {		
 		//Registering Events
-		this.sendConsoleMessage(ChatColor.YELLOW + "registering events...");
+		this.sendConsoleMessage(ChatColor.YELLOW + "registering events");
 		
+		this.registerEvents();
+		
+		this.sendConsoleMessage(ChatColor.GREEN + "finished registering events");
+		
+		//Registering Commands
+		this.sendConsoleMessage(ChatColor.YELLOW + "registering commands");
+		
+		this.registerCommands();
+		
+		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering commands");
+		
+		//Registering Recipes
+		this.sendConsoleMessage(ChatColor.YELLOW + "registering recipes");
+		
+		this.registerRecipies();
+		
+		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
+	}
+	
+	@Override
+	public void onDisable() {
+		
+	}	
+	
+	private void sendConsoleMessage(String msg) {
+		this.server.getConsoleSender().sendMessage(this.consolePrefix + msg);
+	}
+	
+	private void registerEvents() {
 		this.registerEvent(new OnPlayerDeathEvent());
 		this.registerEvent(new OnPlayerJoinEvent());
 		this.registerEvent(new OnPlayerQuitEvent());
@@ -73,12 +105,20 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerEvent(new OnInventoryCloseEvent());
 		this.registerEvent(new OnCraftItemEvent());
 		this.registerEvent(new OnPlayerBedEnterEvent());
-		
-		this.sendConsoleMessage(ChatColor.GREEN + "finished registering events...");
-		
-		//Registering Commands
-		this.sendConsoleMessage(ChatColor.YELLOW + "registering commands");
-		
+		this.registerEvent(new OnPlayerItemBreakEvent());
+		this.registerEvent(new OnBlockPlaceEvent());
+	}
+	
+	private void registerEvent(Listener listener) {
+		this.server.getPluginManager().registerEvents(listener, this);
+	}
+	
+	
+	private void registerCommand(String command, CommandExecutor commandExecutor) {
+		this.getCommand(command).setExecutor(commandExecutor);
+	}
+	
+	private void registerCommands() {
 		this.registerCommand("startKit", new StartKitCommand());
 		this.registerCommand("coords", new CoordCommand());
 		this.registerCommand("back", new BackCommand());
@@ -91,12 +131,9 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerCommand("spawn", new SpawnCommand());
 		this.registerCommand("test", new TestCommand());
 		this.registerCommand("w", new WeatherCommand());
-		
-		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering commands");
-		
-		//Registering Recipes
-		this.sendConsoleMessage(ChatColor.YELLOW + "registering recipes");
-		
+	}
+	
+	private void registerRecipies(){
 		new WhiteDyeRecipe(this);
 		new ConcreteRecipe(this);
 		new GrassBlockRecipe(this);
@@ -104,24 +141,5 @@ public class FounnPlugin extends JavaPlugin{
 		new StairsToMaterialRecipe(this);
 		new SlapsToMaterialRecipe(this);
 		new EnhancedEnchantmentsRecipes(this);
-		
-		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
-	}
-	
-	@Override
-	public void onDisable() {
-		
-	}	
-	
-	private void registerEvent(Listener listener) {
-		this.server.getPluginManager().registerEvents(listener, this);
-	}
-	
-	private void sendConsoleMessage(String msg) {
-		this.server.getConsoleSender().sendMessage(this.consolePrefix + msg);
-	}
-	
-	private void registerCommand(String command, CommandExecutor commandExecutor) {
-		this.getCommand(command).setExecutor(commandExecutor);
 	}
 }
