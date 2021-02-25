@@ -46,6 +46,10 @@ import de.founntain.FounnPlugin.Recipes.GrassBlockRecipe;
 import de.founntain.FounnPlugin.Recipes.SlapsToMaterialRecipe;
 import de.founntain.FounnPlugin.Recipes.StairsToMaterialRecipe;
 import de.founntain.FounnPlugin.Recipes.WhiteDyeRecipe;
+import de.founntain.FounnPlugin.Utilities.BedMap;
+import de.founntain.FounnPlugin.Utilities.DeathCoord;
+import de.founntain.FounnPlugin.Utilities.DeathItems;
+import de.founntain.FounnPlugin.Utilities.PlayerTeleportCoords;
 
 public class FounnPlugin extends JavaPlugin{
 	

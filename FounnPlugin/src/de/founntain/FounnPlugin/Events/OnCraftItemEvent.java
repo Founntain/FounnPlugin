@@ -11,7 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-import de.founntain.FounnPlugin.Pair;
+
+import de.founntain.FounnPlugin.Utilities.Pair;
 
 public class OnCraftItemEvent implements Listener{
 	

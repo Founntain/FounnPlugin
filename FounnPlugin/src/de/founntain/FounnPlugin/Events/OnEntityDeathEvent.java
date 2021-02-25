@@ -13,8 +13,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-import de.founntain.FounnPlugin.Utilities;
 import de.founntain.FounnPlugin.CustomMobs.FreedomfighterMob;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 
 public class OnEntityDeathEvent implements Listener{
 	private Plugin plugin;

@@ -13,9 +13,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import de.founntain.FounnPlugin.DeathItems;
-import de.founntain.FounnPlugin.Pair;
-import de.founntain.FounnPlugin.Utilities;
+import de.founntain.FounnPlugin.Utilities.DeathItems;
+import de.founntain.FounnPlugin.Utilities.EnchantHelper;
+import de.founntain.FounnPlugin.Utilities.Pair;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
 public class OnInventoryCloseEvent implements Listener{
@@ -84,27 +85,9 @@ public class OnInventoryCloseEvent implements Listener{
 		
 		ItemStack tool = null;
 		ItemStack book = null;
-		int itemCount = 0;
 		
-		for(ItemStack item : items) {
-			if(item == null || item.getType() == Material.AIR)
-				continue;
-			
-			itemCount++;
-		}
-		
-		if(itemCount != 2) {
-			for(ItemStack item : items) {
-				if(item == null || item.getType() == Material.AIR)
-					continue;
-				
-				player.getInventory().addItem(item);
-			}
-			
-			player.sendMessage(Utilities.getErrorPrefix() + "Du kannst nur EIN Item und nur EIN Buch benutzten!");
-			
+		if(!EnchantHelper.enchantValididation(items, player))
 			return;
-		}
 		
 		for(ItemStack item : items) {
 			if(item == null || item.getType() == Material.AIR)
@@ -120,48 +103,13 @@ public class OnInventoryCloseEvent implements Listener{
 		
 		ArrayList<Pair<Enchantment, Integer>> enchantments = Utilities.GetEnchantmentsFromItem(book);
 		
-		if(enchantments.size() == 0) {
-			player.sendMessage(Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "Z") + ChatColor.GOLD + "Auf dem Buch ist keine Verzauberung vorhanden!");
-			
-			player.getInventory().addItem(tool);
-			player.getInventory().addItem(book);
-			
+		if(!EnchantHelper.enchantBookItemValidation(enchantments, player, tool, book))
 			return;
-		}
-		
-		if(enchantments.size() != 1) {
-			player.sendMessage(Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "Z") + ChatColor.GOLD + "Auf dem Buch darf nur EINE Verzauberung sein!");
-			
-			player.getInventory().addItem(tool);
-			player.getInventory().addItem(book);
-			
-			return;
-		}
 		
 		for(Pair<Enchantment, Integer> enchantment : enchantments) {
 			player.sendMessage(Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "Z") + ChatColor.GOLD + "Enchantment: " + enchantment.GetItem1().getKey() + " | Level " + enchantment.GetItem2());
 		}
 		
-		Pair<Enchantment, Integer> ench = enchantments.get(0);
-		
-		if(!ench.GetItem1().canEnchantItem(tool)) {
-			player.sendMessage(Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "Z") + ChatColor.GOLD + "Diese Verzauberung kann nicht auf dieses Item angewendet werden!");
-			
-			player.getInventory().addItem(tool);
-			player.getInventory().addItem(book);
-			
-			return;
-		}
-		
-		ItemMeta meta = tool.getItemMeta();
-		meta.addEnchant(ench.GetItem1(), ench.GetItem2(), true);
-		
-		tool.setItemMeta(meta);
-		
-		player.getInventory().addItem(tool);
-		
-		player.sendMessage(Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "Z") + ChatColor.GOLD + "Item Verzaubert und Buch konsumiert!");
-		
-		return;
+		EnchantHelper.enchantItem(enchantments, player, tool, book);
 	}
 }

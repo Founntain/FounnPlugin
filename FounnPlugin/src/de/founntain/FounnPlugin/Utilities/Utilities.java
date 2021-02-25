@@ -1,4 +1,4 @@
-package de.founntain.FounnPlugin;
+package de.founntain.FounnPlugin.Utilities;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -103,43 +103,9 @@ public class Utilities {
 				ChatColor.GRAY + " Spieler Online: " + ChatColor.DARK_PURPLE + (Bukkit.getOnlinePlayers().size()) + " ";
 	}
 	
-	public static Color getColor(int i) {
-		switch(i) {
-			case 1:
-				return Color.AQUA;
-			case 2:
-				return Color.BLACK;
-			case 3:
-				return Color.BLUE;
-			case 4:
-				return Color.FUCHSIA;
-			case 5:
-				return Color.GRAY;
-			case 6:
-				return Color.GREEN;
-			case 7:
-				return Color.LIME;
-			case 8:
-				return Color.MAROON;
-			case 9:
-				return Color.NAVY;
-			case 10:
-				return Color.OLIVE;
-			case 11:
-				return Color.ORANGE;
-			case 12:
-				return Color.PURPLE;
-			case 13:
-				return Color.RED;
-			case 14:
-				return Color.SILVER;
-			case 15:
-				return Color.TEAL;
-			case 16:
-				return Color.WHITE;
-			default:
-				return Color.YELLOW;
-		}
+	public static Color getRandomBGRColor() {
+		Random random = new Random();
+	    return Color.fromBGR(random.nextInt(255), random.nextInt(255), random.nextInt(255));
 	}
 	
 	public static void spawnRandomFirework(Location location) {
@@ -169,8 +135,8 @@ public class Utilities {
         		break;
         }
         
-        Color c1 = Utilities.getColor(rdm.nextInt(17) + 1);
-        Color c2 = Utilities.getColor(rdm.nextInt(17) + 1);
+        Color c1 = Utilities.getRandomBGRColor();
+        Color c2 = Utilities.getRandomBGRColor();
         
         FireworkEffect effect = FireworkEffect.builder().flicker(
         		rdm.nextBoolean())

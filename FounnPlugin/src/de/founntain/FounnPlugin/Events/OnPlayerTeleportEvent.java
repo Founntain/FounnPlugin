@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import de.founntain.FounnPlugin.PlayerTeleportCoords;
+import de.founntain.FounnPlugin.Utilities.PlayerTeleportCoords;
 
 public class OnPlayerTeleportEvent implements Listener{
 	@EventHandler

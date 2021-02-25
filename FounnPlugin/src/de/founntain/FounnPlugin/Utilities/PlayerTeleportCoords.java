@@ -1,4 +1,4 @@
-package de.founntain.FounnPlugin;
+package de.founntain.FounnPlugin.Utilities;
 
 import java.util.HashMap;
 import java.util.UUID;

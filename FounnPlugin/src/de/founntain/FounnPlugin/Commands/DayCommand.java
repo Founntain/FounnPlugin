@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.founntain.FounnPlugin.Utilities;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
 public class DayCommand implements CommandExecutor{

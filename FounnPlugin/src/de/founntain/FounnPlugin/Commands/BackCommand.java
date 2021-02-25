@@ -7,8 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.founntain.FounnPlugin.DeathCoord;
-import de.founntain.FounnPlugin.PlayerTeleportCoords;
+import de.founntain.FounnPlugin.Utilities.DeathCoord;
+import de.founntain.FounnPlugin.Utilities.PlayerTeleportCoords;
 
 public class BackCommand implements CommandExecutor{
 

@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import de.founntain.FounnPlugin.Utilities;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
 public class OnPlayerJoinEvent implements Listener{

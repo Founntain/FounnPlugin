@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import de.founntain.FounnPlugin.Utilities;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
 public class AdminGui {

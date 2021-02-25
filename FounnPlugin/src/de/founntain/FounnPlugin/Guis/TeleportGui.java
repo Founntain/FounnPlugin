@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import de.founntain.FounnPlugin.Utilities;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 
 public class TeleportGui {
 	private Player player;

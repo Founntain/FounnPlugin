@@ -12,8 +12,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import de.founntain.FounnPlugin.DeathCoord;
-import de.founntain.FounnPlugin.DeathItems;
+import de.founntain.FounnPlugin.Utilities.DeathCoord;
+import de.founntain.FounnPlugin.Utilities.DeathItems;
 
 public class OnPlayerDeathEvent implements Listener{
 	@EventHandler

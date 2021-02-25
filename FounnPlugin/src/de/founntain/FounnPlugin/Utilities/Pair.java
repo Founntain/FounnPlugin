@@ -1,4 +1,4 @@
-package de.founntain.FounnPlugin;
+package de.founntain.FounnPlugin.Utilities;
 
 public class Pair<T, S> {
 	

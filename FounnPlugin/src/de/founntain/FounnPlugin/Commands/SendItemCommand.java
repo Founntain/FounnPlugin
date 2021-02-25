@@ -7,8 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.founntain.FounnPlugin.Utilities;
 import de.founntain.FounnPlugin.Guis.SendItemGui;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 
 public class SendItemCommand implements CommandExecutor{
 	@Override

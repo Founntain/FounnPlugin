@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent.BedEnterResult;
 
-import de.founntain.FounnPlugin.BedMap;
+import de.founntain.FounnPlugin.Utilities.BedMap;
 import net.md_5.bungee.api.ChatColor;
 
 public class OnPlayerBedEnterEvent implements Listener{
@@ -58,8 +58,7 @@ public class OnPlayerBedEnterEvent implements Listener{
 	}
 	 
 	private void disableRainIfRaining(World world) {
-		if(!world.isClearWeather());
-		 
-		world.setClearWeatherDuration(48000);
+		if(!world.isClearWeather())
+			world.setClearWeatherDuration(48000);
 	}
 }

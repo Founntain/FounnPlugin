@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import de.founntain.FounnPlugin.Utilities;
+import de.founntain.FounnPlugin.Utilities.Utilities;
 import net.md_5.bungee.api.ChatColor;
 
 public class FireworkCreeperMob {
