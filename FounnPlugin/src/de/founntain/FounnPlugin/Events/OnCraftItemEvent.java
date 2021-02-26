@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import de.founntain.FounnPlugin.Utilities.Pair;
@@ -19,12 +18,8 @@ public class OnCraftItemEvent implements Listener{
 	public OnCraftItemEvent() { }
 
 	@EventHandler
-	public void onCraftItemEvent(CraftItemEvent e) {		
-		try {
-			this.tryEnchantPlus(e);
-		}catch(ClassCastException ex) {
-			return;
-		}	
+	public void onCraftItemEvent(CraftItemEvent e) {
+		this.tryEnchantPlus(e);
 	}
 	
 	private void tryEnchantPlus(CraftItemEvent e) throws ClassCastException{
@@ -41,11 +36,9 @@ public class OnCraftItemEvent implements Listener{
 		for(ItemStack stack : contents) {
 			if(stack.getType() == Material.AIR)
 				continue;
-
-			EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) stack.getItemMeta();
 			
-			int storedCount = enchMeta.getStoredEnchants().keySet().size();
-			int count = enchMeta.getEnchants().keySet().size();
+			int storedCount = stack.getEnchantments().keySet().size();
+			int count = stack.getItemMeta().getEnchants().keySet().size();
 			
 			if(storedCount == 0 && count == 0)
 				continue;
@@ -53,9 +46,9 @@ public class OnCraftItemEvent implements Listener{
 			Map<Enchantment, Integer> enchs = null;
 			
 			if(storedCount > 0)
-				enchs = enchMeta.getStoredEnchants();
+				enchs = stack.getEnchantments();
 			else if(count > 0)
-				enchs = enchMeta.getEnchants();
+				enchs = stack.getItemMeta().getEnchants();
 			
 			for(Map.Entry<Enchantment, Integer> entry : enchs.entrySet()) {
 				if(ench1 == null) {
