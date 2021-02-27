@@ -59,6 +59,9 @@ public class OnCraftItemEvent implements Listener{
 			}
 		}
 		
+		if(ench1 == null || ench2 == null)
+			return;
+		
 		if(ench1.GetItem1() != ench2.GetItem1())
 			e.setCancelled(true);
 		

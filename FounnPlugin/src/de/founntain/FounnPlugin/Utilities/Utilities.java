@@ -194,23 +194,6 @@ public class Utilities {
 		}
 	}
 	
-	public static ArrayList<Location> GetOtherBlocksAroundSelf(Location location) {
-		double x = location.getX();
-		double y = location.getY();
-		double z = location.getZ();
-		
-		ArrayList<Location> blockLocations = new ArrayList<>();
-		
-		blockLocations.add(new Location(location.getWorld(), x + 1, y, z));
-		blockLocations.add(new Location(location.getWorld(), x - 1, y, z));
-		blockLocations.add(new Location(location.getWorld(), x, y + 1, z));
-		blockLocations.add(new Location(location.getWorld(), x, y - 1, z));
-		blockLocations.add(new Location(location.getWorld(), x, y, z + 1));
-		blockLocations.add(new Location(location.getWorld(), x, y, z - 1));
-		
-		return blockLocations;
-	}
-	
 	public static ArrayList<Pair<Enchantment, Integer>> GetEnchantmentsFromItem(ItemStack item) {
 		ArrayList<Pair<Enchantment, Integer>> enchantments = new ArrayList<Pair<Enchantment, Integer>>();
 		

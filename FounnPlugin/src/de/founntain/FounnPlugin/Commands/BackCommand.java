@@ -7,7 +7,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.founntain.FounnPlugin.Utilities.DeathCoord;
 import de.founntain.FounnPlugin.Utilities.PlayerTeleportCoords;
 
 public class BackCommand implements CommandExecutor{
@@ -17,6 +16,7 @@ public class BackCommand implements CommandExecutor{
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 
+			Location currentLocation = player.getLocation();
 			Location lastTeleportLocation = PlayerTeleportCoords.playerTeleportCoords.get(player.getUniqueId());
 			
 			if(lastTeleportLocation == null) {
@@ -24,9 +24,9 @@ public class BackCommand implements CommandExecutor{
 				return true;
 			}
 			
-			player.teleport(lastTeleportLocation);
+			PlayerTeleportCoords.playerTeleportCoords.put(player.getUniqueId(), currentLocation);
 			
-			DeathCoord.deathCoords.remove(player.getUniqueId());
+			player.teleport(lastTeleportLocation);
 			
 			player.sendMessage(ChatColor.GREEN + "Du wurdest auf die angegebene Position teleportiert.");
 		}

@@ -37,7 +37,7 @@ public class SpawnCustomMobCommand implements CommandExecutor{
 			Location loc = target.getLocation();
 				
 			switch(args[1].toLowerCase()) {
-				case "boomSpawnerZombie":
+				case "boomspawnerzombie":
 					loc.setY(loc.getY() + 3);
 					
 					FreedomfighterMob freedomfighterMob = new FreedomfighterMob(this.plugin);
