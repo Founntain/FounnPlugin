@@ -7,16 +7,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
 
-import net.md_5.bungee.api.ChatColor;
-
-public class WhiteDyeRecipe {
+public class WhiteDyeRecipe extends BaseRecipe{
 	
 	private Plugin plugin;
-	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
 	public WhiteDyeRecipe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering WhiteDyeRecipe...");
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering " + this.getClass().getSimpleName());
 		this.plugin = plugin;
+		
 		this.createRecipe();
 	}
 	

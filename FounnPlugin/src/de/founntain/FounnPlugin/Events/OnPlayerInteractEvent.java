@@ -51,7 +51,7 @@ public class OnPlayerInteractEvent implements Listener{
 						blockLocation.getX(),
 						blockLocation.getY(),
 						blockLocation.getZ(),
-						8F, false, true);
+						5F, false, true);
 				
 				Damageable dmgMeta = (Damageable) item.getItemMeta();
 				

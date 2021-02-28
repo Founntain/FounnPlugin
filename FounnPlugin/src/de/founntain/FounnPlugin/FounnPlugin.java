@@ -15,7 +15,7 @@ import de.founntain.FounnPlugin.Events.*;
 import de.founntain.FounnPlugin.Recipes.*;
 import de.founntain.FounnPlugin.Utilities.*;
 
-public class FounnPlugin extends JavaPlugin{
+public class FounnPlugin extends JavaPlugin {
 	
 	private Server server;
 	private String consolePrefix = "[" + ChatColor.BLUE +"FounnPlugin" + ChatColor.WHITE + "] ";
@@ -119,7 +119,6 @@ public class FounnPlugin extends JavaPlugin{
 		new DeathBoxRecipe(this);
 		new StairsToMaterialRecipe(this);
 		new SlapsToMaterialRecipe(this);
-		new EnhancedEnchantmentsRecipes(this);
-		new TntPickaxe(this);
+		new TntPickaxeRecipe(this);
 	}
 }

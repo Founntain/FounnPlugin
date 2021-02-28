@@ -7,15 +7,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
 
-import net.md_5.bungee.api.ChatColor;
-
-public class GrassBlockRecipe {
+public class GrassBlockRecipe extends BaseRecipe{
 	private Plugin plugin;
-	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
 	public GrassBlockRecipe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering GrassBlockRecipe...");
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering " + this.getClass().getSimpleName());
 		this.plugin = plugin;
+		
 		this.createRecipe();
 	}
 	

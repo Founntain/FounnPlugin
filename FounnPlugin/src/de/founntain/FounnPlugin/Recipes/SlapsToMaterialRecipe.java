@@ -14,15 +14,13 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
 
-import net.md_5.bungee.api.ChatColor;
-
-public class SlapsToMaterialRecipe {
+public class SlapsToMaterialRecipe extends BaseRecipe{
 	private Plugin plugin;
-	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
 	public SlapsToMaterialRecipe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering SlapsToMaterialRecipe...");
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering " + this.getClass().getSimpleName());
 		this.plugin = plugin;
+		
 		this.createRecipes();
 	}
 	

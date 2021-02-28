@@ -14,14 +14,11 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
 
-import net.md_5.bungee.api.ChatColor;
-
-public class StairsToMaterialRecipe {
+public class StairsToMaterialRecipe extends BaseRecipe{
 	private Plugin plugin;
-	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
 	public StairsToMaterialRecipe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering StairsToMaterialRecipe...");
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering " + this.getClass().getSimpleName());
 		this.plugin = plugin;
 		this.createRecipes();
 	}

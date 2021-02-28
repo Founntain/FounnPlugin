@@ -12,18 +12,17 @@ import org.bukkit.plugin.Plugin;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class DeathBoxRecipe {
+public class DeathBoxRecipe extends BaseRecipe{
 	private Plugin plugin;
-	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
 	public DeathBoxRecipe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering DeathBoxRecipe...");
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering " + this.getClass().getSimpleName());
 		this.plugin = plugin;
+		
 		this.createRecipe();
 	}
 	
 	private void createRecipe() {
-		
 		ItemStack deathBox = new ItemStack(Material.CHEST);
 		
 		ItemMeta deathBoxMeta = deathBox.getItemMeta();

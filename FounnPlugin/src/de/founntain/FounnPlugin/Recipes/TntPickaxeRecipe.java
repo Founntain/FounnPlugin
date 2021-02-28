@@ -12,12 +12,11 @@ import org.bukkit.plugin.Plugin;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class TntPickaxe {
+public class TntPickaxeRecipe extends BaseRecipe{
 	private Plugin plugin;
-	private String prefix = ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "R" + ChatColor.WHITE + "] " + ChatColor.AQUA;
 	
-	public TntPickaxe(Plugin plugin) {
-		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering TNTPickaxe...");
+	public TntPickaxeRecipe(Plugin plugin) {
+		Bukkit.getConsoleSender().sendMessage(this.prefix + "registering " + this.getClass().getSimpleName());
 		this.plugin = plugin;
 		this.createRecipe();
 	}

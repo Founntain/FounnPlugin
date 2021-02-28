@@ -24,38 +24,44 @@ public class OnPlayerDeathEvent implements Listener{
 		if(e.getEntity() instanceof Player) {					
 			Player player = e.getEntity();
 			
-			Location loc = player.getLocation();
-			
-			String deathMessage;
-			
-			DeathCoord deathCoord = new DeathCoord(loc, player.getUniqueId());
-			DeathCoord.deathCoords.remove(player.getUniqueId());
-			
-			DeathCoord.deathCoords.put(player.getUniqueId(), deathCoord);
-			
-			deathMessage = ChatColor.RED + "Du bist gestorben." + " Schreib" + ChatColor.GREEN + " /back "
-					+ ChatColor.RED + "um dich zu deinem Todespunkt zu teleportieren";
-			
-			player.sendMessage(deathMessage);
+			this.saveDeathCoord(player);
 
-			Bukkit.broadcastMessage("[" + ChatColor.GRAY + "†" + ChatColor.WHITE + "] " + ChatColor.GRAY + player.getDisplayName() +
-					ChatColor.RED + " -" + e.getDroppedExp() + "XP" );
+			Bukkit.broadcastMessage("[" + ChatColor.GRAY + "†" + ChatColor.WHITE + "] " + ChatColor.GRAY + player.getDisplayName());
 			
-			//Deathbox
-			Inventory inventory = player.getInventory();
-			for(ItemStack item : inventory.getContents()) {
-				if(item == null)
-					continue;
-				if(item.getType() == Material.CHEST) {
-					ItemMeta metaData = item.getItemMeta();
+			this.deathBox(e, player);
+		}
+	}
+	
+	private void saveDeathCoord(final Player player) {
+		Location loc = player.getLocation();
+		
+		String deathMessage;
+		
+		DeathCoord deathCoord = new DeathCoord(loc, player.getUniqueId());
+		DeathCoord.deathCoords.remove(player.getUniqueId());
+		
+		DeathCoord.deathCoords.put(player.getUniqueId(), deathCoord);
+		
+		deathMessage = ChatColor.RED + "Du bist gestorben." + " Schreib" + ChatColor.GREEN + " /back "
+				+ ChatColor.RED + "um dich zu deinem Todespunkt zu teleportieren";
+		
+		player.sendMessage(deathMessage);
+	}
+	
+	private void deathBox(final PlayerDeathEvent e, final Player player) {
+		Inventory inventory = player.getInventory();
+		for(ItemStack item : inventory.getContents()) {
+			if(item == null)
+				continue;
+			if(item.getType() == Material.CHEST) {
+				ItemMeta metaData = item.getItemMeta();
+				
+				if(metaData.getDisplayName().equals(ChatColor.DARK_PURPLE + "Deathbox")) {						
+					DeathItems.items.put(player.getUniqueId(), inventory.getContents());
+					e.getDrops().removeAll(e.getDrops());
 					
-					if(metaData.getDisplayName().equals(ChatColor.DARK_PURPLE + "Deathbox")) {						
-						DeathItems.items.put(player.getUniqueId(), inventory.getContents());
-						e.getDrops().removeAll(e.getDrops());
-						
-						player.sendMessage(ChatColor.DARK_PURPLE + "Deathbox" + ChatColor.WHITE + " >> " + ChatColor.YELLOW + "Du hattest eine Deathbox dabei, schreibe " + ChatColor.DARK_PURPLE+ "/deathbox" + ChatColor.YELLOW + " um an deine Items zu kommen!");
-					}			
-				}
+					player.sendMessage(ChatColor.DARK_PURPLE + "Deathbox" + ChatColor.WHITE + " >> " + ChatColor.YELLOW + "Du hattest eine Deathbox dabei, schreibe " + ChatColor.DARK_PURPLE+ "/deathbox" + ChatColor.YELLOW + " um an deine Items zu kommen!");
+				}			
 			}
 		}
 	}
