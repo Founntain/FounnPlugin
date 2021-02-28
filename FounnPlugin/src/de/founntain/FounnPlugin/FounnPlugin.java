@@ -109,6 +109,7 @@ public class FounnPlugin extends JavaPlugin{
 		this.registerCommand("spawn", new SpawnCommand());
 		this.registerCommand("test", new TestCommand());
 		this.registerCommand("w", new WeatherCommand());
+		this.registerCommand("chunkScan", new ChunkScanCommand());
 	}
 	
 	private void registerRecipies(){

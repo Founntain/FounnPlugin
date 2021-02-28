@@ -40,14 +40,19 @@ public class MenuGui {
 			ChatColor.RESET.toString() + ChatColor.GRAY + "wiederhergestellt werden können"
 		});
 		
+		ItemStack stats = Utilities.createMenuItem(Material.NETHER_STAR, ChatColor.DARK_PURPLE + "Stats", new String[] {
+			ChatColor.GRAY + "Zeigt dir an wie oft du",
+			ChatColor.GRAY + "welche Mobs getötet hast!"
+		});
+		
 		ItemStack filler = Utilities.createMenuItem(Material.GRAY_STAINED_GLASS_PANE, " ");
 		
 		ItemStack[] menuItems = {
 				adminMenu,
+				stats,
 				tpToPlayer,
 				enchantItem,
 				trash,
-				filler,
 				filler,
 				filler,
 				filler,

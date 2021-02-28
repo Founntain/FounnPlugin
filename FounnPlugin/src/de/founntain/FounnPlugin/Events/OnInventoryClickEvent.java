@@ -12,6 +12,7 @@ import de.founntain.FounnPlugin.FounnPlugin;
 import de.founntain.FounnPlugin.Guis.AdminGui;
 import de.founntain.FounnPlugin.Guis.EnchantmentGui;
 import de.founntain.FounnPlugin.Guis.MenuGui;
+import de.founntain.FounnPlugin.Guis.PlayerStatsGui;
 import de.founntain.FounnPlugin.Guis.TeleportGui;
 import de.founntain.FounnPlugin.Utilities.DeathItems;
 import de.founntain.FounnPlugin.Utilities.Utilities;
@@ -46,6 +47,16 @@ public class OnInventoryClickEvent implements Listener{
 			
 			return;
 		}
+		
+		if(e.getView().getTitle().equals(ChatColor.DARK_PURPLE + player.getDisplayName() + "s Statistik")) {		
+			e.setCancelled(true);
+			return;
+		}
+		
+		if(e.getView().getTitle().equals(ChatColor.GOLD + "Chunkscan result")) {
+			e.setCancelled(true);
+			return;
+		}
 	}
 	
 	private void menuInventory(InventoryClickEvent e, Player player) {
@@ -65,6 +76,10 @@ public class OnInventoryClickEvent implements Listener{
 				
 				AdminGui adminGui = new AdminGui(player);
 				adminGui.openAdminGui();
+				break;
+			case NETHER_STAR:
+				PlayerStatsGui playerStatsGui = new PlayerStatsGui(player);
+				playerStatsGui.openGui();
 				break;
 			case COMPASS:
 				teleportGui = new TeleportGui(player, true);

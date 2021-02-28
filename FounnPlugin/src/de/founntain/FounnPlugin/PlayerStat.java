@@ -83,7 +83,7 @@ public class PlayerStat {
 	}
 	
 	private void broadcastMilestone(String name, int amount) {
-		if(amount % 10 != 0) return;
+		if(amount % 50 != 0) return;
 
 		String prefix = Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "Milestone");
 		Player player = Bukkit.getServer().getPlayer(this.playerId);
@@ -94,7 +94,7 @@ public class PlayerStat {
 	}
 	
 	private void broadcastMilestone(Material material, int amount) {
-		if(amount % 10 != 0) return;
+		if(amount % 50 != 0) return;
 
 		String prefix = Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "Milestone");
 		Player player = Bukkit.getServer().getPlayer(this.playerId);

@@ -39,6 +39,9 @@ commands:
    w:
       description: Change the weater c => clear, r => rain, t => thunder
       usage: /w
+   chunkScan:
+      description: Scans the chunk for minerals and other blocks
+      usage: /chunkScan
    test:
       description: SUCK MY DICk fuck u
       usage: /test
