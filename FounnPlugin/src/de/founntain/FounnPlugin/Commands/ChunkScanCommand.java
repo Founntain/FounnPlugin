@@ -49,6 +49,7 @@ public class ChunkScanCommand implements CommandExecutor{
 		materialsToIgnore.add(Material.DIORITE);
 		materialsToIgnore.add(Material.GRANITE);
 		
+		
 		int minX = 0;
 		int minZ = 0;
 		int maxX = minX | 15;
@@ -59,6 +60,8 @@ public class ChunkScanCommand implements CommandExecutor{
 			for(int y = 0; y <= maxY; y++) {
 				for(int z = minZ; z <= maxZ; z++) {					
 					Block block = chunk.getBlock(x, y, z); 
+					
+					if(block == null) continue;
 					
 					if(materialsToIgnore.contains(block.getType())) 
 						 continue;
@@ -81,6 +84,7 @@ public class ChunkScanCommand implements CommandExecutor{
 		
 		for(Entry<Material, Integer> entry : blocks.entrySet()) {
 			ItemStack item = new ItemStack(entry.getKey());
+			
 			ItemMeta meta = item.getItemMeta();
 			
 			meta.setDisplayName(ChatColor.YELLOW + "" + entry.getValue() + " " + entry.getKey().name());

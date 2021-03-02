@@ -12,6 +12,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import de.founntain.FounnPlugin.Commands.*;
 import de.founntain.FounnPlugin.Events.*;
+import de.founntain.FounnPlugin.Events.InventoryClick.OnAdminToolsInventoryClick;
+import de.founntain.FounnPlugin.Events.InventoryClick.OnDeathItemsInventoryClick;
+import de.founntain.FounnPlugin.Events.InventoryClick.OnServerMenuInventoryClick;
+import de.founntain.FounnPlugin.Events.InventoryClick.OnTeleportPlayerInventoryClick;
+import de.founntain.FounnPlugin.Events.InventoryClick.OnTeleportToWorldInventoryClick;
 import de.founntain.FounnPlugin.Recipes.*;
 import de.founntain.FounnPlugin.Utilities.*;
 
@@ -84,6 +89,13 @@ public class FounnPlugin extends JavaPlugin {
 		this.registerEvent(new OnBlockPlaceEvent());
 		this.registerEvent(new OnPlayerTeleportEvent());
 		this.registerEvent(new OnPlayerInteractEvent(this));
+		
+		//InventoryClickEvents
+		this.registerEvent(new OnServerMenuInventoryClick());
+		this.registerEvent(new OnAdminToolsInventoryClick());
+		this.registerEvent(new OnDeathItemsInventoryClick());
+		this.registerEvent(new OnTeleportPlayerInventoryClick());
+		this.registerEvent(new OnTeleportToWorldInventoryClick());
 	}
 	
 	private void registerEvent(Listener listener) {
@@ -96,12 +108,11 @@ public class FounnPlugin extends JavaPlugin {
 	}
 	
 	private void registerCommands() {
-		this.registerCommand("startKit", new StartKitCommand());
+		this.registerCommand("menu", new MenuCommand());
 		this.registerCommand("coords", new CoordCommand());
 		this.registerCommand("deathCoord", new DeathCoordCommand());
 		this.registerCommand("back", new BackCommand());
 		this.registerCommand("sendItem", new SendItemCommand());
-		this.registerCommand("menu", new MenuCommand());
 		this.registerCommand("spawnCustomMob", new SpawnCustomMobCommand(this));
 		this.registerCommand("deathBox", new DeathBoxCommand());
 		this.registerCommand("clearInv", new ClearInventoryCommand());
@@ -110,6 +121,7 @@ public class FounnPlugin extends JavaPlugin {
 		this.registerCommand("test", new TestCommand());
 		this.registerCommand("w", new WeatherCommand());
 		this.registerCommand("chunkScan", new ChunkScanCommand());
+		this.registerCommand("world", new WorldCommand());
 	}
 	
 	private void registerRecipies(){

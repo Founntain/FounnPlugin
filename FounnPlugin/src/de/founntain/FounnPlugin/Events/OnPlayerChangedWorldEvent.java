@@ -13,10 +13,10 @@ public class OnPlayerChangedWorldEvent implements Listener{
 	@EventHandler
 	public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent e) {	
 		Player player = e.getPlayer();
-			
+		
 		this.broadcastWorldChangedMessage(
-			Utilities.getFormatedEnvironmentName(e.getFrom().getEnvironment()),
-			Utilities.getFormatedEnvironmentName(player.getWorld().getEnvironment()),
+			Utilities.getFormatedEnvironmentName(e.getFrom().getEnvironment()) + " (" + e.getFrom().getName() + ")",
+			Utilities.getFormatedEnvironmentName(player.getWorld().getEnvironment()) + " (" + player.getWorld().getName() + ")",
 			player
 		);
 	}

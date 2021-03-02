@@ -3,9 +3,9 @@ main: de.founntain.FounnPlugin.FounnPlugin
 version: 1.0
 api-version: 1.16
 commands:
-   startKit:
-      description: Gives you some start tools
-      usage: /startKit
+   menu:
+      description: Opens the server menu
+      usage: /menu
    coords:
       description: Tells everyone your coords
       usage: /coords
@@ -18,9 +18,6 @@ commands:
    sendItem:
       description: Sends items to a given player
       usage: /back
-   menu:
-      description: Opens the server menu
-      usage: /menu
    spawnCustomMob:
       description: Spawns a custom mob
       usage: /spawnCustomMob
@@ -42,6 +39,9 @@ commands:
    chunkScan:
       description: Scans the chunk for minerals and other blocks
       usage: /chunkScan
+   world:
+      description: Opens a list of all maps.
+      usage: /world
    test:
       description: SUCK MY DICk fuck u
       usage: /test
