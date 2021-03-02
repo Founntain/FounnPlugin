@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class OnEnitityDamageByEnityEvent implements Listener{
+public class OnEntityDamageByEntityEvent implements Listener{
 	@EventHandler
 	public void onEntityDamageByEnity(EntityDamageByEntityEvent e) {
 		if(e.getDamager() instanceof Zombie && e.getEntity() instanceof Player) {

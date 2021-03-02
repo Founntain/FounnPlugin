@@ -12,11 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import de.founntain.FounnPlugin.Commands.*;
 import de.founntain.FounnPlugin.Events.*;
-import de.founntain.FounnPlugin.Events.InventoryClick.OnAdminToolsInventoryClick;
-import de.founntain.FounnPlugin.Events.InventoryClick.OnDeathItemsInventoryClick;
-import de.founntain.FounnPlugin.Events.InventoryClick.OnServerMenuInventoryClick;
-import de.founntain.FounnPlugin.Events.InventoryClick.OnTeleportPlayerInventoryClick;
-import de.founntain.FounnPlugin.Events.InventoryClick.OnTeleportToWorldInventoryClick;
 import de.founntain.FounnPlugin.Recipes.*;
 import de.founntain.FounnPlugin.Utilities.*;
 
@@ -72,30 +67,36 @@ public class FounnPlugin extends JavaPlugin {
 	}
 	
 	private void registerEvents() {
+		//Async Events
+		this.registerEvent(new OnAsyncPlayerChatEvent());
+		
+		//Player Events
 		this.registerEvent(new OnPlayerDeathEvent());
 		this.registerEvent(new OnPlayerJoinEvent());
 		this.registerEvent(new OnPlayerQuitEvent());
 		this.registerEvent(new OnPlayerChangedWorldEvent());
-		this.registerEvent(new OnEntityDamageEvent());
-		this.registerEvent(new OnEnitityDamageByEnityEvent());
-		this.registerEvent(new OnEntityDeathEvent());
-		this.registerEvent(new OnBlockBreakEvent());
-		this.registerEvent(new OnAsyncPlayerChatEvent());
-		this.registerEvent(new OnInventoryClickEvent());
-		this.registerEvent(new OnInventoryCloseEvent());
-		this.registerEvent(new OnCraftItemEvent());
 		this.registerEvent(new OnPlayerBedEnterEvent());
 		this.registerEvent(new OnPlayerItemBreakEvent());
-		this.registerEvent(new OnBlockPlaceEvent());
 		this.registerEvent(new OnPlayerTeleportEvent());
 		this.registerEvent(new OnPlayerInteractEvent(this));
 		
-		//InventoryClickEvents
-		this.registerEvent(new OnServerMenuInventoryClick());
-		this.registerEvent(new OnAdminToolsInventoryClick());
-		this.registerEvent(new OnDeathItemsInventoryClick());
-		this.registerEvent(new OnTeleportPlayerInventoryClick());
-		this.registerEvent(new OnTeleportToWorldInventoryClick());
+		//Entity Event
+		this.registerEvent(new OnEntityDamageByEntityEvent());
+		this.registerEvent(new OnEntityDeathEvent());
+		
+		//Inventory Events
+		this.registerEvent(new OnInventoryClickEvent());
+		this.registerEvent(new OnInventoryCloseEvent());
+		
+		//Craft Events
+		this.registerEvent(new OnCraftItemEvent());
+		
+		//Block Events
+		this.registerEvent(new OnBlockBreakEvent());
+		this.registerEvent(new OnBlockPlaceEvent());
+		
+		//InventoryClick Events
+		this.registerEvent(new OnCustomInventoryClickEvent());
 	}
 	
 	private void registerEvent(Listener listener) {
