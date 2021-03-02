@@ -40,7 +40,7 @@ public class WorldCommand implements CommandExecutor{
 		switch(option) {
 			case "create":
 				if(!player.getUniqueId().equals(FounnPlugin.founntainUUID)) {
-					player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzten!");
+					player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzen!");
 					return false;
 				}
 				
@@ -48,7 +48,7 @@ public class WorldCommand implements CommandExecutor{
 				break;
 			case "delete":
 				if(!player.getUniqueId().equals(FounnPlugin.founntainUUID)) {
-					player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzten!");
+					player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzen!");
 					return false;
 				}
 				
@@ -100,7 +100,7 @@ public class WorldCommand implements CommandExecutor{
 		String type = null;
 		
 		if(!player.getUniqueId().equals(FounnPlugin.founntainUUID)) {
-			player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzten!");
+			player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzen!");
 			return false;
 		}
 		
