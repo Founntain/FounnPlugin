@@ -50,6 +50,8 @@ public class WorldCommand implements CommandExecutor{
 			default:
 				return true;
 		}
+		
+		return true;
 	}
 	
 	private void runDefaultCommand(final Player player) {
@@ -128,6 +130,8 @@ public class WorldCommand implements CommandExecutor{
 				
 				this.createWorldWithParameters(player, worldname, this.getEnvironmentFromString(environment), this.getWorldTypeFromString(type));
 				break;
+			default:
+				return false;
 		}
 		
 		return true;
