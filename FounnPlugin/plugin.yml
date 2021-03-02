@@ -1,5 +1,5 @@
 name: FounnPlugin
-main: de.founntain.FounnPlugin.FounnPlugin
+main: de.founntain.founnplugin.FounnPlugin
 version: 1.0
 api-version: 1.16
 commands:

@@ -1,8 +1,10 @@
 package de.founntain.founnplugin.commands;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldType;
@@ -16,9 +18,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import de.founntain.founnplugin.FounnPlugin;
-import de.founntain.founnplugin.WorldGenerator;
 import de.founntain.founnplugin.classes.Utilities;
-import net.md_5.bungee.api.ChatColor;
+import de.founntain.founnplugin.classes.WorldGenerator;
 
 public class WorldCommand implements CommandExecutor{
 	@Override
@@ -38,6 +39,11 @@ public class WorldCommand implements CommandExecutor{
 		
 		switch(option) {
 			case "create":
+				if(!player.getUniqueId().equals(FounnPlugin.founntainUUID)) {
+					player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzten!");
+					return false;
+				}
+				
 				this.createOption(argsCount, args, player);
 				break;
 			case "delete":
@@ -45,6 +51,8 @@ public class WorldCommand implements CommandExecutor{
 					player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Du hast keine Rechte diesen Befehl zu nutzten!");
 					return false;
 				}
+				
+				this.deleteOption(player);
 				
 				break;
 			default:
@@ -57,25 +65,10 @@ public class WorldCommand implements CommandExecutor{
 	private void runDefaultCommand(final Player player) {
 		Inventory inv = Bukkit.createInventory(player, 54, ChatColor.DARK_GREEN + "World list");
 		
-		for(final World world : Bukkit.getServer().getWorlds()) {
-			ItemStack worldItem = null;
-			
+		for(final World world : Bukkit.getServer().getWorlds()) {			
 			if(world.getName().equals("world_nether") || world.getName().equals("world_the_end")) continue;
 			
-			switch(world.getEnvironment()) {
-				case NORMAL:
-					worldItem = new ItemStack(Material.GRASS_BLOCK);
-					break;
-				case NETHER:
-					worldItem = new ItemStack(Material.NETHERRACK);
-					break;
-				case THE_END:
-					worldItem = new ItemStack(Material.END_STONE);
-					break;
-				default: 
-					worldItem = new ItemStack(Material.GRASS_BLOCK);
-					break;
-			}
+			ItemStack worldItem = this.getItemStackByEnvironment(world.getEnvironment());
 			
 			ItemMeta meta = worldItem.getItemMeta();
 			
@@ -137,6 +130,37 @@ public class WorldCommand implements CommandExecutor{
 		return true;
 	}
 	
+	private void deleteOption(final Player player) {
+		Inventory inv = Bukkit.createInventory(player, 54, ChatColor.RED + "Delete world");
+		
+		List<World> worlds = Bukkit.getServer().getWorlds();
+		
+		if((worlds.size() - 3) == 0) {
+			player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "E") + "Es gibt keine Welten zum löschen!");
+			
+			return;
+		}
+		
+		for(World world : worlds) {
+			if(world == null) continue;
+			
+			if(world.getName().equals("world") || world.getName().equals("world_nether") || world.getName().equals("world_the_end")) 
+				continue;
+			
+			ItemStack item = this.getItemStackByEnvironment(world.getEnvironment());
+			
+			ItemMeta meta = item.getItemMeta();
+			
+			meta.setDisplayName(ChatColor.YELLOW + world.getName());
+			
+			item.setItemMeta(meta);
+			
+			inv.addItem(item);
+		}
+		
+		player.openInventory(inv);
+	}
+	
 	private void createWorldWithParameters(final Player player, final String worldname, final Environment env, final WorldType type) {
 		WorldGenerator wg = new WorldGenerator(worldname, player);
 		
@@ -155,6 +179,19 @@ public class WorldCommand implements CommandExecutor{
 				return Environment.THE_END;
 			default:
 				return Environment.NORMAL;
+		}
+	}
+	
+	private ItemStack getItemStackByEnvironment(Environment env) {
+		switch(env) {
+			case NORMAL:
+				return new ItemStack(Material.GRASS_BLOCK);
+			case NETHER:
+				return new ItemStack(Material.NETHERRACK);
+			case THE_END:
+				return new ItemStack(Material.END_STONE);
+			default: 
+				return new ItemStack(Material.GRASS_BLOCK);
 		}
 	}
 	

@@ -3,9 +3,11 @@ package de.founntain.founnplugin;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Server;
+import org.bukkit.WorldCreator;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
@@ -61,6 +63,13 @@ public class FounnPlugin extends JavaPlugin {
 		this.registerRecipies();
 		
 		this.sendConsoleMessage(ChatColor.GREEN +  "finished registering recipes");
+		
+		//Loading custom worlds
+		this.sendConsoleMessage(ChatColor.YELLOW + "loading created worlds");
+		
+		this.loadingCustomWorlds();
+		
+		this.sendConsoleMessage(ChatColor.GREEN +  "finished loading worlds");
 	}
 	
 	private void sendConsoleMessage(String msg) {
@@ -133,5 +142,12 @@ public class FounnPlugin extends JavaPlugin {
 		new StairsToMaterialRecipe(this);
 		new SlapsToMaterialRecipe(this);
 		new TntPickaxeRecipe(this);
+	}
+	
+	private void loadingCustomWorlds() {
+		for(String worldname : WorldGenerator.getWorldnamesFromJson()) {
+			this.server.getConsoleSender().sendMessage(Utilities.getCustomPrefix(ChatColor.DARK_PURPLE, "W") + "loading world " + ChatColor.GOLD + worldname);
+			Bukkit.createWorld(new WorldCreator(worldname));
+		}
 	}
 }

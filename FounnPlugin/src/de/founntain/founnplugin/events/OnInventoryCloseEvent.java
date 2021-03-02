@@ -3,6 +3,7 @@ package de.founntain.founnplugin.events;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -16,7 +17,6 @@ import de.founntain.founnplugin.classes.DeathItems;
 import de.founntain.founnplugin.classes.EnchantHelper;
 import de.founntain.founnplugin.classes.Pair;
 import de.founntain.founnplugin.classes.Utilities;
-import net.md_5.bungee.api.ChatColor;
 
 public class OnInventoryCloseEvent implements Listener{
 	@EventHandler

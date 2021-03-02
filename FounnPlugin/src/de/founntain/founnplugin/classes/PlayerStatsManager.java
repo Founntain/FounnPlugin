@@ -8,8 +8,6 @@ import java.util.UUID;
 
 import com.google.gson.Gson;
 
-import de.founntain.founnplugin.PlayerStat;
-
 public class PlayerStatsManager {
 	private final String FOLDER_PATH = "plugins/FounnPlugin/stats/";
 	

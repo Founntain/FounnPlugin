@@ -1,6 +1,9 @@
 package de.founntain.founnplugin.events;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -12,12 +15,12 @@ import org.bukkit.inventory.ItemStack;
 import de.founntain.founnplugin.FounnPlugin;
 import de.founntain.founnplugin.classes.DeathItems;
 import de.founntain.founnplugin.classes.Utilities;
+import de.founntain.founnplugin.classes.WorldGenerator;
 import de.founntain.founnplugin.guis.AdminGui;
 import de.founntain.founnplugin.guis.EnchantmentGui;
 import de.founntain.founnplugin.guis.MenuGui;
 import de.founntain.founnplugin.guis.PlayerStatsGui;
 import de.founntain.founnplugin.guis.TeleportGui;
-import net.md_5.bungee.api.ChatColor;
 
 public class OnCustomInventoryClickEvent implements Listener{
 	@EventHandler
@@ -67,6 +70,16 @@ public class OnCustomInventoryClickEvent implements Listener{
 		Player player = (Player) e.getWhoClicked();
 		
 		this.telportPlayerToWorldMenuInventory(e, player);
+		e.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void onDeleteWorldInventoryClick(InventoryClickEvent e) {
+		if(!e.getView().getTitle().equals(ChatColor.RED + "Delete world")) return;
+		
+		Player player = (Player) e.getWhoClicked();
+		
+		this.deleteWorldInventoryClick(e, player);
 		e.setCancelled(true);
 	}
 	
@@ -181,6 +194,40 @@ public class OnCustomInventoryClickEvent implements Listener{
 			player.teleport(world.getSpawnLocation());
 			
 			e.setCancelled(true);
+			return;
+		}
+	}
+	
+	private void deleteWorldInventoryClick(final InventoryClickEvent e, final Player player) {
+		ItemStack itemClicked = e.getCurrentItem();
+		
+		if(itemClicked == null || itemClicked.getType() == Material.AIR) return;
+		
+		String worldname = itemClicked.getItemMeta().getDisplayName().substring((ChatColor.YELLOW.toString().length()));
+		
+		for(World world : Bukkit.getServer().getWorlds()) {
+			String wname = world.getName();
+			
+			if(!(wname).equals(worldname)) continue;
+			
+			List<Player> playersInWorld = world.getPlayers();
+			
+			for(Player p : playersInWorld) {
+				World mainWorld = Bukkit.getWorld("world");
+				
+				p.teleport(mainWorld.getSpawnLocation());
+				
+				player.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "W") + ChatColor.RED + "Die Welt in der du bist wird gelöscht, du wurdest zum Spawn der Hauptwelt teleportiert!");
+			}
+			
+			WorldGenerator wg = new WorldGenerator(worldname, player);
+			wg.deleteWorld();
+			
+			player.sendMessage(Utilities.getCustomPrefix(ChatColor.BLUE, "W") + "World " + worldname + " deleted!");
+			Bukkit.getServer().getConsoleSender()
+				.sendMessage(Utilities.getCustomPrefix(ChatColor.RED, "W") + "deleted world " + ChatColor.DARK_RED + worldname);
+			
+			player.closeInventory();
 			return;
 		}
 	}

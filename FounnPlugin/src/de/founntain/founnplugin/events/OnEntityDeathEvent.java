@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import de.founntain.founnplugin.FounnPlugin;
-import de.founntain.founnplugin.PlayerStat;
+import de.founntain.founnplugin.classes.PlayerStat;
 
 public class OnEntityDeathEvent implements Listener{	
 	@EventHandler

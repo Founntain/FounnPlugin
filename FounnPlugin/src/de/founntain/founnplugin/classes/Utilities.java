@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
@@ -19,8 +20,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class Utilities {
 	public static String getFormatedEnvironmentName(Environment environment) {

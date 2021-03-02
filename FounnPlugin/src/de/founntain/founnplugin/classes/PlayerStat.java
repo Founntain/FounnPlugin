@@ -1,16 +1,14 @@
-package de.founntain.founnplugin;
+package de.founntain.founnplugin.classes;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-
-import de.founntain.founnplugin.classes.Utilities;
-import net.md_5.bungee.api.ChatColor;
 
 public class PlayerStat {
 	private UUID playerId;

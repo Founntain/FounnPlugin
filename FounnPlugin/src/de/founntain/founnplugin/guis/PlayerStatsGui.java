@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import de.founntain.founnplugin.FounnPlugin;
-import de.founntain.founnplugin.PlayerStat;
+import de.founntain.founnplugin.classes.PlayerStat;
 import de.founntain.founnplugin.classes.Utilities;
 
 public class PlayerStatsGui {
