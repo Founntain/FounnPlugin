@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="FounnPlugin:jar">
+    <output-path>X:/SpigotServer/plugins</output-path>
+    <root id="archive" name="FounnPlugin.jar">
+      <element id="module-output" name="FounnPlugin" />
+      <element id="module-source" name="FounnPlugin" />
+    </root>
+  </artifact>
+</component>
